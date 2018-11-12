@@ -1,5 +1,5 @@
 import format from 'date-fns/format'
-import { Link } from 'gatsby'
+import { Link, StaticQuery, graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import shortid from 'shortid'
@@ -171,6 +171,42 @@ class CalendarPage extends Component {
                 </a>
               </Link>
             </div>
+            <StaticQuery
+              query={graphql`
+                {
+                  allGoogleSheetEventosRow {
+                    edges {
+                      node {
+                        id
+                        date: fecha
+                        eventName: nombre
+                        eventLink: link
+                        place: lugar
+                      }
+                    }
+                  }
+                }
+              `}
+              render={data => {
+                const events = data.allGoogleSheetEventosRow.edges.map(
+                  ({ node }) => node,
+                )
+                console.log(events)
+                const monthlyCalendar = {
+                  events,
+                  when: {
+                    month: 'noviembre',
+                    year: '18',
+                  },
+                }
+                return (
+                  <Month
+                    monthlyCalendar={monthlyCalendar}
+                    showModal={this.showModal}
+                  />
+                )
+              }}
+            />
             {monthlyCalendarsToShow.map(monthlyCalendar => (
               <Month
                 key={monthlyCalendar.when.month}

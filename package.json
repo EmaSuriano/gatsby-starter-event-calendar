@@ -12,6 +12,7 @@
     "gatsby-plugin-react-helmet": "^3.0.0",
     "gatsby-plugin-sharp": "^2.0.7",
     "gatsby-source-filesystem": "^2.0.4",
+    "gatsby-source-google-sheets": "^1.1.1",
     "gatsby-transformer-sharp": "^2.1.4",
     "prop-types": "^15.6.2",
     "react": "^16.5.1",
