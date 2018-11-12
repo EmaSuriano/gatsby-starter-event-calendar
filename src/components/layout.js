@@ -2,9 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
-
 import Header from './header'
+import 'tachyons/css/tachyons.min.css'
 import './layout.css'
+import './moarStyles.css'
 
 const Layout = ({ children }) => (
   <StaticQuery
