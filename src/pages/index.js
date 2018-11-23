@@ -1,6 +1,6 @@
-import format from 'date-fns/format'
 import { StaticQuery, graphql } from 'gatsby'
 import React, { Component } from 'react'
+import { Grommet, Box, Layer } from 'grommet'
 import Container from '../components/Container'
 import Layout from '../components/Layout'
 import Month from '../components/Calendar/Month'
@@ -40,56 +40,58 @@ class CalendarPage extends Component {
     const { currentDay, eventsOfTheDay, showModal } = this.state
 
     return (
-      <Layout>
-        <Container large="large">
-          <div className="fade-in">
-            <StaticQuery
-              query={graphql`
-                {
-                  allGoogleSheetEventosRow {
-                    edges {
-                      node {
-                        id
-                        date: fecha
-                        eventName: nombre
-                        eventLink: link
-                        place: lugar
+      <Grommet>
+        <Layout>
+          <Container large="large">
+            <div className="fade-in">
+              <StaticQuery
+                query={graphql`
+                  {
+                    allGoogleSheetEventosRow {
+                      edges {
+                        node {
+                          id
+                          date: fecha
+                          eventName: nombre
+                          eventLink: link
+                          place: lugar
+                        }
                       }
                     }
                   }
-                }
-              `}
-              render={data => {
-                const events = data.allGoogleSheetEventosRow.edges.map(
-                  ({ node }) => node,
-                )
-                const monthlyCalendar = {
-                  events,
-                  when: {
-                    month: 'noviembre',
-                    year: '18',
-                  },
-                }
-                console.log(events)
-                return (
-                  <Month
-                    monthlyCalendar={monthlyCalendar}
-                    events={events}
-                    showModal={this.showModal}
-                  />
-                )
-              }}
+                `}
+                render={data => {
+                  const events = data.allGoogleSheetEventosRow.edges.map(
+                    ({ node }) => node,
+                  )
+                  const monthlyCalendar = {
+                    events,
+                    when: {
+                      month: 'noviembre',
+                      year: '18',
+                    },
+                  }
+                  console.log(events)
+                  return (
+                    <Month
+                      monthlyCalendar={monthlyCalendar}
+                      events={events}
+                      showModal={this.showModal}
+                    />
+                  )
+                }}
+              />
+            </div>
+          </Container>
+          {showModal && (
+            <ModalEvent
+              hideModal={this.hideModal}
+              currentDay={currentDay}
+              events={eventsOfTheDay}
             />
-          </div>
-        </Container>
-        {showModal && (
-          <ModalEvent
-            hideModal={this.hideModal}
-            currentDay={currentDay}
-            events={eventsOfTheDay}
-          />
-        )}
-      </Layout>
+          )}
+        </Layout>
+      </Grommet>
     )
   }
 }

@@ -14,11 +14,15 @@
     "gatsby-source-filesystem": "^2.0.4",
     "gatsby-source-google-sheets": "^1.1.1",
     "gatsby-transformer-sharp": "^2.1.4",
+    "grommet": "^2.0.1",
+    "grommet-icons": "^3.2.1",
+    "polished": "^2.3.0",
     "prop-types": "^15.6.2",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "react-helmet": "^5.2.0",
     "shortid": "^2.2.14",
+    "styled-components": "^4.1.1",
     "tachyons": "^4.11.1"
   },
   "devDependencies": {
