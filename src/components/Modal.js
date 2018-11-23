@@ -1,8 +1,9 @@
-import { Layer, Box } from 'grommet'
+import { Layer, Box, Text, Button } from 'grommet'
+import { FormClose } from 'grommet-icons'
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function Modal({ children, hideModal }) {
+function Modal({ children, hideModal, title }) {
   return (
     <Layer
       position="center"
@@ -10,7 +11,17 @@ function Modal({ children, hideModal }) {
       onClickOutside={hideModal}
       onEsc={hideModal}
     >
-      <Box overflow="auto">{children}</Box>
+      <Box
+        direction="row"
+        align="center"
+        tag="header"
+        elevation="small"
+        justify="between"
+      >
+        <Text margin={{ left: 'small' }}>{title}</Text>
+        <Button icon={<FormClose />} onClick={hideModal} />
+      </Box>
+      <Box>{children}</Box>
     </Layer>
   )
 }
@@ -18,6 +29,7 @@ function Modal({ children, hideModal }) {
 Modal.propTypes = {
   children: PropTypes.node.isRequired,
   hideModal: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
 }
 
 export default Modal

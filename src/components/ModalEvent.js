@@ -2,24 +2,14 @@ import React from 'react'
 import format from 'date-fns/format'
 import PropTypes from 'prop-types'
 import Modal from './Modal'
-import FormatDate from './FormatDate'
 import Events from './Calendar/Events'
 
 const ModalEvent = ({ hideModal, currentDay, events }) => (
-  <Modal hideModal={hideModal}>
+  <Modal
+    hideModal={hideModal}
+    title={format(new Date(currentDay).setUTCMinutes(180), 'dddd D, MMMM')}
+  >
     <div className="bg-white br2 ma3">
-      <div className="b--black-10 bb bg-washed-yellow br--top br2 bw1 flex items-center justify-between pa3">
-        <span className="black-alternative dib f4">
-          <FormatDate date={currentDay} />
-        </span>
-        <button
-          className="b--transparent bg-transparent flex items-center nr2 grow pa0 pointer"
-          onClick={hideModal}
-          type="button"
-        >
-          <box-icon name="x" color="rgba(0, 0, 0, 0.3)" />
-        </button>
-      </div>
       <div className="m-vh-75 overflow-y-auto">
         {events
           .sort(
