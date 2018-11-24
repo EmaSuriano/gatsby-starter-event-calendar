@@ -1,9 +1,10 @@
 import React from 'react'
-import { Layer, Box, Text, Button } from 'grommet'
+import { Layer, Box, Text, Button, Anchor } from 'grommet'
 import { FormClose } from 'grommet-icons'
 import format from 'date-fns/format'
 import PropTypes from 'prop-types'
 import Events from './Calendar/Events'
+import Hover from './Hover'
 
 const ModalEvent = ({ hideModal, currentDay, events }) => (
   <Layer
@@ -35,17 +36,39 @@ const ModalEvent = ({ hideModal, currentDay, events }) => (
       {[...events, ...events]
         .sort((eventA, eventB) => new Date(eventA.date) - new Date(eventB.date))
         .map(event => (
-          <Box elevation="small">
-            <div className="pr3 pr4-ns">
-              <p className="black-50 f5 f4-ns mv0">
-                {format(new Date(event.date).setUTCMinutes(180), 'HH:mm')}
-              </p>
-            </div>
-            <div className="flex-auto">
-              <h3 className="black-alternative f5 f4-ns mv0">
+          <Box elevation="small" direction="row">
+            <Text a11yTitle="time" margin="small">
+              {format(new Date(event.date).setUTCMinutes(180), 'HH:mm')}
+            </Text>
+            <Box margin="small">
+              <Text a11yTitle="event name" weight="bold" size="large">
                 {event.eventName}
-              </h3>
-              {event.place && <p className="black-50 mb0 mt2">{event.place}</p>}
+              </Text>
+              {event.place && (
+                <Text a11yTitle="event place">{event.place}</Text>
+              )}
+              <Hover>
+                {({ hover }) => (
+                  <Box
+                    background="lightblue"
+                    round="small"
+                    pad="small"
+                    margin="auto"
+                    {...hover === true && {
+                      animation: 'pulse',
+                    }}
+                  >
+                    <Anchor
+                      background="red"
+                      href={event.eventLink}
+                      label="Link"
+                      a11yTitle="event link"
+                      target="_blank"
+                    />
+                  </Box>
+                )}
+              </Hover>
+
               <div className="flex">
                 <a
                   href={event.eventLink}
@@ -59,7 +82,7 @@ const ModalEvent = ({ hideModal, currentDay, events }) => (
                   <span className="black-alternative text-shadow-1">Link</span>
                 </a>
               </div>
-            </div>
+            </Box>
           </Box>
         ))}
     </Box>
