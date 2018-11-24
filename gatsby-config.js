@@ -25,14 +25,14 @@ module.exports = {
         icon: 'src/images/gatsby-icon.png', // This path is relative to the root of the site.
       },
     },
-    {
-      resolve: 'gatsby-source-google-sheets',
-      options: {
-        spreadsheetId: '1yCanjlkn94LCmIqsX33AbjAq30gpO9hm0RTot9qOt5M',
-        worksheetTitle: 'Eventos',
-        credentials: require('./credentials.json'),
-      },
-    },
+    // {
+    //   resolve: 'gatsby-source-google-sheets',
+    //   options: {
+    //     spreadsheetId: '1yCanjlkn94LCmIqsX33AbjAq30gpO9hm0RTot9qOt5M',
+    //     worksheetTitle: 'Eventos',
+    //     credentials: require('./credentials.json'),
+    //   },
+    // },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',

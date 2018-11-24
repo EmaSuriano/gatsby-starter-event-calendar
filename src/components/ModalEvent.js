@@ -8,9 +8,9 @@ import Events from './Calendar/Events'
 const ModalEvent = ({ hideModal, currentDay, events }) => (
   <Layer
     position="center"
-    responsive
     onClickOutside={hideModal}
     onEsc={hideModal}
+    responsive
     modal
   >
     <Box
@@ -21,7 +21,7 @@ const ModalEvent = ({ hideModal, currentDay, events }) => (
       justify="between"
     >
       <Text margin={{ left: 'small' }}>
-        {format(new Date(currentDay).setUTCMinutes(180), 'dddd D, MMMM')}
+        {format(new Date(currentDay), 'dddd D, MMMM')}
       </Text>
       <Button icon={<FormClose />} onClick={hideModal} />
     </Box>
