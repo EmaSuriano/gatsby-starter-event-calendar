@@ -1,10 +1,36 @@
 import { StaticQuery, graphql } from 'gatsby'
 import React, { Component } from 'react'
+import format from 'date-fns/format';
 import Container from '../components/Container'
 import Layout from '../components/Layout'
 import Month from '../components/Calendar/Month'
 import ModalEvent from '../components/ModalEvent'
 import fakeData from '../../fakeData.json'
+
+const groupEventsByMonth = data => {
+  const eventsByMonthKey = data.allGoogleSheetEventosRow.edges.reduce(
+    (acc, { node }) => {
+      const monthYear = format(new Date(node.date), 'MM-YYYY')
+      if (!acc[monthYear]) {
+        return {
+          ...acc,
+          [monthYear]: [node],
+        }
+      }
+
+      return {
+        ...acc,
+        [monthYear]: acc[monthYear].concat(node),
+      }
+    },
+    {},
+  )
+  const result = Object.keys(eventsByMonthKey).map(monthKey => ({
+    events: eventsByMonthKey[monthKey],
+    date: monthKey,
+  }))
+  return result
+}
 
 class CalendarPage extends Component {
   state = {
@@ -24,16 +50,8 @@ class CalendarPage extends Component {
 
   render() {
     const { currentDay, eventsOfTheDay, showModal } = this.state
-    const events = fakeData.allGoogleSheetEventosRow.edges.map(
-      ({ node }) => node,
-    )
-    const monthlyCalendar = {
-      events,
-      when: {
-        month: 'noviembre',
-        year: '18',
-      },
-    }
+    const groupedEvents = groupEventsByMonth(fakeData)
+
     return (
       <Layout>
         <Container large="large">
@@ -76,11 +94,13 @@ class CalendarPage extends Component {
               }}
             /> */}
 
-            <Month
-              monthlyCalendar={monthlyCalendar}
-              events={events}
-              showModal={this.showModal}
-            />
+            {groupedEvents.map(monthlyCalendar => (
+              <Month
+                monthlyCalendar={monthlyCalendar}
+                showModal={this.showModal}
+                key={monthlyCalendar.date}
+              />
+            ))}
           </div>
         </Container>
         {showModal && (
