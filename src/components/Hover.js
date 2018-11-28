@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Box } from 'grommet'
 import PropTypes from 'prop-types'
 
-export class Hover extends Component {
+ class Hover extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
   }

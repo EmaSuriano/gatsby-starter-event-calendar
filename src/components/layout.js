@@ -9,7 +9,6 @@ import './moarStyles.css'
 const Layout = ({ children }) => (
   <Grommet theme={grommet}>
     <Helmet />
-
     {children}
   </Grommet>
 )

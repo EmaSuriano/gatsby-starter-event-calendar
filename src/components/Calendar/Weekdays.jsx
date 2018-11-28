@@ -1,18 +1,33 @@
-import React from 'react';
+import React from 'react'
+import { Box, Text, ResponsiveContext } from 'grommet'
+import { format, eachDay, startOfWeek, endOfWeek } from 'date-fns'
+import CalendarBox from './CalendarBox'
 
-const weekdays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+const getWeekdays = () => {
+  const now = new Date()
+  const weekdays = eachDay(startOfWeek(now), endOfWeek(now)).map(day =>
+    format(day, 'dddd'),
+  )
+  return weekdays
+}
 
-const Weekdays = () => (
-  <div className="b--black-10 bl bt bw1 dn flex-l">
-    {weekdays.map(weekday => (
-      <div
-        key={weekday}
-        className="b--black-10 bg-white black-alternative br bw1 pv3 tc ttc width-one-seventh-l"
-      >
-        {weekday}
-      </div>
-    ))}
-  </div>
-);
+const Weekdays = () => {
+  const weekdays = getWeekdays()
+  return (
+    <ResponsiveContext.Consumer>
+      {size =>
+        size !== 'small' && (
+          <Box border="all" direction="row" wrap>
+            {weekdays.map(weekday => (
+              <CalendarBox>
+                <Text textAlign="center">{weekday}</Text>
+              </CalendarBox>
+            ))}
+          </Box>
+        )
+      }
+    </ResponsiveContext.Consumer>
+  )
+}
 
-export default Weekdays;
+export default Weekdays

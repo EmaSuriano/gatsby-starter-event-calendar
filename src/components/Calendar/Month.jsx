@@ -1,8 +1,7 @@
-import getDaysInMonth from 'date-fns/get_days_in_month'
-import getISODay from 'date-fns/get_iso_day'
+import React from 'react'
+import { getDaysInMonth, getISODay, format } from 'date-fns'
+import { Heading, Box } from 'grommet'
 import PropTypes from 'prop-types'
-import format from 'date-fns/format'
-import React, { Component } from 'react'
 import Days from './Days'
 import EmptyDays from './EmptyDays'
 import Events from './Events'
@@ -18,12 +17,12 @@ const Month = ({ monthlyCalendar, showModal }) => {
   const emptyDaysAtEnd = 7 - ((currentMonthIsoDay + currentMonthDays) % 7)
 
   return (
-    <div className="mt4">
-      <h2 className="black-50 f4 f3-ns mb4 mt0 tc ttc">
+    <Box margin={{ top: 'medium' }}>
+      <Heading>
         {format(new Date(currentYear, monthDate, 1), 'MMMM YYYY')}
-      </h2>
+      </Heading>
       <Weekdays />
-      <div className="b--black-10 br bt bw1 flex flex-wrap">
+      <Box border="all" direction="row" wrap>
         {currentMonthIsoDay !== 7 && <EmptyDays days={currentMonthIsoDay} />}
         <Days
           days={currentMonthDays}
@@ -32,8 +31,8 @@ const Month = ({ monthlyCalendar, showModal }) => {
           showModal={showModal}
         />
         {emptyDaysAtEnd !== 7 && <EmptyDays days={emptyDaysAtEnd} />}
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }
 

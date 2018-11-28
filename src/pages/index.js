@@ -1,7 +1,7 @@
 import { StaticQuery, graphql } from 'gatsby'
 import React, { Component } from 'react'
-import format from 'date-fns/format';
-import Container from '../components/Container'
+import format from 'date-fns/format'
+import { Box } from 'grommet';
 import Layout from '../components/Layout'
 import Month from '../components/Calendar/Month'
 import ModalEvent from '../components/ModalEvent'
@@ -54,9 +54,8 @@ class CalendarPage extends Component {
 
     return (
       <Layout>
-        <Container large="large">
-          <div className="fade-in">
-            {/* <StaticQuery
+        <Box animation="fadeIn" pad="large">
+          {/* <StaticQuery
               query={graphql`
                 {
                   allGoogleSheetEventosRow {
@@ -94,15 +93,14 @@ class CalendarPage extends Component {
               }}
             /> */}
 
-            {groupedEvents.map(monthlyCalendar => (
-              <Month
-                monthlyCalendar={monthlyCalendar}
-                showModal={this.showModal}
-                key={monthlyCalendar.date}
-              />
-            ))}
-          </div>
-        </Container>
+          {groupedEvents.map(monthlyCalendar => (
+            <Month
+              monthlyCalendar={monthlyCalendar}
+              showModal={this.showModal}
+              key={monthlyCalendar.date}
+            />
+          ))}
+        </Box>
         {showModal && (
           <ModalEvent
             hideModal={this.hideModal}
