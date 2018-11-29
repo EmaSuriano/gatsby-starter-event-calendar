@@ -1,19 +1,14 @@
-import React from 'react'
 import { Box } from 'grommet'
-import { css } from 'styled-components'
+import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-const CalendarBox = ({ square, children }) => (
-  <Box
-    pad="small"
-    border="all"
-    css={css`
-      width: calc(100% / 7);
-    `}
-  >
-    {children}
-  </Box>
-)
+const CalendarBox = styled(Box).attrs({
+  height: props => props.square && '8rem',
+  pad: 'small',
+  border: 'all',
+})`
+  width: calc(100% / 7);
+`
 
 CalendarBox.propTypes = {
   square: PropTypes.bool,

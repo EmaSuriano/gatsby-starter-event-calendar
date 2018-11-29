@@ -1,110 +1,124 @@
 import isBefore from 'date-fns/is_before'
 import isSameDay from 'date-fns/is_same_day'
+import format from 'date-fns/format'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
-import DayFooter from './DayFooter'
+import React from 'react'
+import { Text, ResponsiveContext, Box } from 'grommet'
+import { css } from 'styled-components'
 import Events from './Events'
 import Event from './Event'
 
-class Days extends Component {
-  static propTypes = {
-    days: PropTypes.number.isRequired,
-    events: PropTypes.arrayOf(Event.propTypes.event).isRequired,
-    month: PropTypes.instanceOf(Date).isRequired,
-    showModal: PropTypes.func.isRequired,
-  }
+const getBgColor = (currentDay, today) =>
+  (isSameDay(currentDay, today) && 'lightgreen') ||
+  (isBefore(currentDay, today) && 'gray')
 
-  getBgColor = (currentDay, today) => {
-    if (isSameDay(currentDay, today)) {
-      return 'bg-washed-green'
-    }
+const isVisibleInMobile = (currentDay, today) =>
+  isBefore(today, currentDay) || isSameDay(today, currentDay)
 
-    if (isBefore(currentDay, today)) {
-      return 'bg-near-white'
-    }
+const getEventsOfTheDay = (eventsInMonth, day) =>
+  eventsInMonth.filter(event => isSameDay(event.date, day))
 
-    return ''
-  }
+const getStrike = (currentDay, today) =>
+  isBefore(currentDay, today) && !isSameDay(currentDay, today)
 
-  getDayName = dayNumberOfTheWeek => {
-    switch (dayNumberOfTheWeek) {
-      case 0:
-        return 'domingo'
-      case 1:
-        return 'lunes'
-      case 2:
-        return 'martes'
-      case 3:
-        return 'miércoles'
-      case 4:
-        return 'jueves'
-      case 5:
-        return 'viernes'
-      case 6:
-        return 'sábado'
-      default:
-        return ''
-    }
-  }
+const Day = ({ day, events, showModal }) => {
+  const today = new Date()
 
-  getEventsOfTheDay = (eventsInMonth, day) =>
-    eventsInMonth.filter(event => isSameDay(event.date, day))
-
-  getStrike = (currentDay, today) =>
-    isBefore(currentDay, today) && !isSameDay(currentDay, today)
-
-  isVisibleInMobile = (currentDay, today) =>
-    isBefore(today, currentDay) || isSameDay(today, currentDay)
-
-  render() {
-    const { days, events, month, showModal } = this.props
-    const elements = []
-
-    for (let index = 0; index < days; index += 1) {
-      const currentDayNumber = index + 1
-      const currentDay = new Date(
-        month.getFullYear(),
-        month.getMonth(),
-        currentDayNumber,
-      )
-      const today = new Date()
-
-      const bgColor = this.getBgColor(currentDay, today)
-      const isVisibleInMobile = this.isVisibleInMobile(currentDay, today)
-      const eventsOfTheDay = this.getEventsOfTheDay(events, currentDay)
-
-      elements.push(
-        <div
-          key={currentDay.getTime()}
-          className={`${bgColor || ''} ${
-            eventsOfTheDay.length ? 'pointer' : ''
-          } ${
-            isVisibleInMobile ? '' : 'dn db-l'
+  const bgColor = getBgColor(day, today)
+  const visibleInMobile = isVisibleInMobile(day, today)
+  const eventsOfTheDay = getEventsOfTheDay(events, day)
+  const onClick = () => eventsOfTheDay.length && showModal(eventsOfTheDay, day)
+  return (
+    <ResponsiveContext.Consumer>
+      {size => (
+        <Box
+          key={day.getTime()}
+          className={`${
+            visibleInMobile ? '' : 'dn db-l'
           } b--black-10 bb bl bw1 h4-l ph3 pv2 pa2-l w-100 width-one-seventh-l`}
-          onClick={() =>
-            eventsOfTheDay.length && showModal(eventsOfTheDay, currentDay)
-          }
-          role="presentation"
+          onClick={onClick}
+          css={css`
+            cursor: ${eventsOfTheDay.length && 'pointer'};
+          `}
+          background={bgColor}
         >
           <div className="flex flex-column-l h-100 items-center items-end-l">
             <div className="flex-auto order-1 order-0-l pl3 pl0-l w-80 w-100-l">
-              {eventsOfTheDay.length ? (
-                <Events events={eventsOfTheDay} />
-              ) : null}
+              {eventsOfTheDay.length > 0 && <Events events={eventsOfTheDay} />}
             </div>
-            <DayFooter
-              dayNumber={currentDay.getDate()}
-              dayName={this.getDayName(currentDay.getDay())}
-              isToday={isSameDay(currentDay, today)}
-              strike={this.getStrike(currentDay, today)}
-            />
-          </div>
-        </div>,
-      )
-    }
+            <Box direction="column">
+              <Text
+                color={isSameDay(day, today) && 'green'}
+                size="large"
+                css={css`
+                  text-decoration: ${getStrike(day, today) && 'line-through'};
+                `}
+              >
+                {format(day, 'DD')}
+              </Text>
 
-    return elements
-  }
+              {size === 'small' && (
+                <Text color={isSameDay(day, today) && 'green'} size="small">
+                  {format(day, 'dddd')}
+                </Text>
+              )}
+            </Box>
+          </div>
+        </Box>
+      )}
+    </ResponsiveContext.Consumer>
+  )
 }
+
+const Days = ({ days, events, month, showModal }) =>
+  Array(days)
+    .fill(null)
+    .map((x, i) => {
+      const currentDay = new Date(month.getFullYear(), month.getMonth(), i + 1)
+      const eventsOfTheDay = getEventsOfTheDay(events, currentDay)
+
+      return (
+        <Day day={currentDay} events={eventsOfTheDay} showModal={showModal} />
+      )
+    })
+
+Days.propTypes = {
+  days: PropTypes.number.isRequired,
+  events: PropTypes.arrayOf(Event.propTypes.event).isRequired,
+  month: PropTypes.instanceOf(Date).isRequired,
+  showModal: PropTypes.func.isRequired,
+}
+
+// class Days extends Component {
+//   static propTypes = {
+//     days: PropTypes.number.isRequired,
+//     events: PropTypes.arrayOf(Event.propTypes.event).isRequired,
+//     month: PropTypes.instanceOf(Date).isRequired,
+//     showModal: PropTypes.func.isRequired,
+//   }
+
+//   render() {
+//     const { days, events, month, showModal } = this.props
+
+//     const filledDays = Array(days)
+//       .fill(null)
+//       .map((x, i) => {
+//         const currentDay = new Date(
+//           month.getFullYear(),
+//           month.getMonth(),
+//           i + 1,
+//         )
+
+//         const eventsOfTheDay = this.getEventsOfTheDay(events, currentDay)
+
+//         return (
+//           <Day day={currentDay} events={eventsOfTheDay} showModal={showModal} />
+//         )
+//       })
+
+//     return filledDays
+
+//   }
+// }
 
 export default Days

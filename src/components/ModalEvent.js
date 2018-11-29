@@ -44,44 +44,19 @@ const ModalEvent = ({ hideModal, currentDay, events }) => (
               <Text a11yTitle="event name" weight="bold" size="large">
                 {event.eventName}
               </Text>
+
               {event.place && (
                 <Text a11yTitle="event place">{event.place}</Text>
               )}
-              <Hover>
-                {({ hover }) => (
-                  <Box
-                    background="lightblue"
-                    round="small"
-                    pad="small"
-                    margin="auto"
-                    {...hover === true && {
-                      animation: 'pulse',
-                    }}
-                  >
-                    <Anchor
-                      background="red"
-                      href={event.eventLink}
-                      label="Link"
-                      a11yTitle="event link"
-                      target="_blank"
-                    />
-                  </Box>
-                )}
-              </Hover>
 
-              <div className="flex">
-                <a
+              <Box margin={{ top: 'medium' }} width="xsmall">
+                <Button
                   href={event.eventLink}
+                  label="Link"
+                  a11yTitle="event link"
                   target="_blank"
-                  rel="noopener noreferrer"
-                  className="b b--black-30 ba bg-yellow-alternative br1 bw1 dib f6 flex grow items-center mt3 no-underline ph3 pv1 ttu white"
-                >
-                  <span className="f4 mr2 pt1">
-                    <box-icon name="link-external" color="rgba(0, 0, 0, 0.3)" />
-                  </span>
-                  <span className="black-alternative text-shadow-1">Link</span>
-                </a>
-              </div>
+                />
+              </Box>
             </Box>
           </Box>
         ))}
