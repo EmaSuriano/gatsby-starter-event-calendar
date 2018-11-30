@@ -7,6 +7,7 @@ import { Text, ResponsiveContext, Box } from 'grommet'
 import { css } from 'styled-components'
 import Events from './Events'
 import Event from './Event'
+import Query from '../Query'
 
 const getBgColor = (currentDay, today) =>
   (isSameDay(currentDay, today) && 'lightgreen') ||
@@ -29,27 +30,33 @@ const Day = ({ day, events, showModal }) => {
   const eventsOfTheDay = getEventsOfTheDay(events, day)
   const onClick = () => eventsOfTheDay.length && showModal(eventsOfTheDay, day)
   return (
-    <ResponsiveContext.Consumer>
-      {size => (
-        <Box
-          key={day.getTime()}
-          className={`${
-            visibleInMobile ? '' : 'dn db-l'
-          } b--black-10 bb bl bw1 h4-l ph3 pv2 pa2-l w-100 width-one-seventh-l`}
-          onClick={onClick}
-          css={css`
-            cursor: ${eventsOfTheDay.length && 'pointer'};
-          `}
-          background={bgColor}
-        >
-          <div className="flex flex-column-l h-100 items-center items-end-l">
-            <div className="flex-auto order-1 order-0-l pl3 pl0-l w-80 w-100-l">
-              {eventsOfTheDay.length > 0 && <Events events={eventsOfTheDay} />}
-            </div>
-            <Box direction="column">
+    <Box
+      key={day.getTime()}
+      className={`${
+        visibleInMobile ? '' : 'dn db-l'
+      } b--black-10 bb bl bw1 h4-l ph3 pv2 pa2-l w-100 width-one-seventh-l`}
+      onClick={onClick}
+      css={css`
+        cursor: ${eventsOfTheDay.length && 'pointer'};
+      `}
+      background={bgColor}
+    >
+      <ResponsiveContext.Consumer>
+        {size => (
+          <Box direction={size === 'small' ? 'row' : 'column'} fill="vertical">
+            <Box
+              direction="column"
+              margin={{ top: 'auto' }}
+              width="xsmall"
+              alignSelf="end"
+              css={css`
+                order: 1;
+              `}
+            >
               <Text
                 color={isSameDay(day, today) && 'green'}
                 size="large"
+                textAlign={size === 'small' ? 'start' : 'end'}
                 css={css`
                   text-decoration: ${getStrike(day, today) && 'line-through'};
                 `}
@@ -57,16 +64,27 @@ const Day = ({ day, events, showModal }) => {
                 {format(day, 'DD')}
               </Text>
 
-              {size === 'small' && (
+              <Query sizes={['small']}>
                 <Text color={isSameDay(day, today) && 'green'} size="small">
                   {format(day, 'dddd')}
                 </Text>
-              )}
+              </Query>
             </Box>
-          </div>
-        </Box>
-      )}
-    </ResponsiveContext.Consumer>
+
+            <Box
+              direction="column"
+              fill="horizontal"
+              pad={{ left: size === 'small' && 'medium' }}
+              css={css`
+                order: ${size === 'small' ? 1 : 0};
+              `}
+            >
+              {eventsOfTheDay.length > 0 && <Events events={eventsOfTheDay} />}
+            </Box>
+          </Box>
+        )}
+      </ResponsiveContext.Consumer>
+    </Box>
   )
 }
 
@@ -88,37 +106,5 @@ Days.propTypes = {
   month: PropTypes.instanceOf(Date).isRequired,
   showModal: PropTypes.func.isRequired,
 }
-
-// class Days extends Component {
-//   static propTypes = {
-//     days: PropTypes.number.isRequired,
-//     events: PropTypes.arrayOf(Event.propTypes.event).isRequired,
-//     month: PropTypes.instanceOf(Date).isRequired,
-//     showModal: PropTypes.func.isRequired,
-//   }
-
-//   render() {
-//     const { days, events, month, showModal } = this.props
-
-//     const filledDays = Array(days)
-//       .fill(null)
-//       .map((x, i) => {
-//         const currentDay = new Date(
-//           month.getFullYear(),
-//           month.getMonth(),
-//           i + 1,
-//         )
-
-//         const eventsOfTheDay = this.getEventsOfTheDay(events, currentDay)
-
-//         return (
-//           <Day day={currentDay} events={eventsOfTheDay} showModal={showModal} />
-//         )
-//       })
-
-//     return filledDays
-
-//   }
-// }
 
 export default Days

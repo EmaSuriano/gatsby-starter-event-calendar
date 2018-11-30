@@ -1,17 +1,14 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { ResponsiveContext } from 'grommet'
 import CalendarBox from './CalendarBox'
+import Query from '../Query'
 
 const EmptyDays = ({ days }) => (
-  <ResponsiveContext.Consumer>
-    {size =>
-      size !== 'small' &&
-      Array(days).fill(
-        <CalendarBox background="theme.global.colors.background" square />,
-      )
-    }
-  </ResponsiveContext.Consumer>
+  <Query sizes={['small']} inverse>
+    {Array(days).fill(
+      <CalendarBox background="theme.global.colors.background" square />,
+    )}
+  </Query>
 )
 
 EmptyDays.propTypes = {

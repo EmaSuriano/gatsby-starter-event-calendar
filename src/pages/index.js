@@ -1,7 +1,7 @@
 import { StaticQuery, graphql } from 'gatsby'
 import React, { Component } from 'react'
 import format from 'date-fns/format'
-import { Box } from 'grommet';
+import { Box } from 'grommet'
 import Layout from '../components/Layout'
 import Month from '../components/Calendar/Month'
 import ModalEvent from '../components/ModalEvent'
@@ -33,13 +33,15 @@ const groupEventsByMonth = data => {
 }
 
 class CalendarPage extends Component {
-  state = {
+  initialState = {
     currentDay: new Date(),
     eventsOfTheDay: [],
     showModal: false,
   }
 
-  hideModal = () => this.setState({ showModal: false })
+  state = this.initialState
+
+  hideModal = () => this.setState(this.initialState)
 
   showModal = (eventsOfTheDay, currentDay) =>
     this.setState({
