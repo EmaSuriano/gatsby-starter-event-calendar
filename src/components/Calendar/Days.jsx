@@ -8,6 +8,7 @@ import { css } from 'styled-components'
 import Events from './Events'
 import Event from './Event'
 import Query from '../Query'
+import CalendarBox from './CalendarBox'
 
 const getBgColor = (currentDay, today) =>
   (isSameDay(currentDay, today) && 'lightgreen') ||
@@ -27,64 +28,68 @@ const Day = ({ day, events, showModal }) => {
 
   const bgColor = getBgColor(day, today)
   const visibleInMobile = isVisibleInMobile(day, today)
+  console.log(visibleInMobile)
   const eventsOfTheDay = getEventsOfTheDay(events, day)
-  const onClick = () => eventsOfTheDay.length && showModal(eventsOfTheDay, day)
+  const onClick = () => showModal(eventsOfTheDay, day)
+
   return (
-    <Box
-      key={day.getTime()}
-      className={`${
-        visibleInMobile ? '' : 'dn db-l'
-      } b--black-10 bb bl bw1 h4-l ph3 pv2 pa2-l w-100 width-one-seventh-l`}
-      onClick={onClick}
-      css={css`
-        cursor: ${eventsOfTheDay.length && 'pointer'};
-      `}
-      background={bgColor}
-    >
-      <ResponsiveContext.Consumer>
-        {size => (
-          <Box direction={size === 'small' ? 'row' : 'column'} fill="vertical">
+    <ResponsiveContext.Consumer>
+      {size =>
+        (size !== 'small' || (size === 'small' && visibleInMobile)) && (
+          <CalendarBox
+            key={day.getTime()}
+            square
+            background={bgColor}
+            {...eventsOfTheDay.length && { onClick }}
+          >
             <Box
-              direction="column"
-              margin={{ top: 'auto' }}
-              width="xsmall"
-              alignSelf="end"
-              css={css`
-                order: 1;
-              `}
+              direction={size === 'small' ? 'row' : 'column'}
+              fill="vertical"
             >
-              <Text
-                color={isSameDay(day, today) && 'green'}
-                size="large"
-                textAlign={size === 'small' ? 'start' : 'end'}
+              <Box
+                direction="column"
+                margin={{ top: 'auto' }}
+                width="xsmall"
+                alignSelf="end"
                 css={css`
-                  text-decoration: ${getStrike(day, today) && 'line-through'};
+                  order: 1;
                 `}
               >
-                {format(day, 'DD')}
-              </Text>
-
-              <Query sizes={['small']}>
-                <Text color={isSameDay(day, today) && 'green'} size="small">
-                  {format(day, 'dddd')}
+                <Text
+                  color={isSameDay(day, today) && 'green'}
+                  size="large"
+                  textAlign={size === 'small' ? 'start' : 'end'}
+                  css={css`
+                    text-decoration: ${getStrike(day, today) && 'line-through'};
+                  `}
+                >
+                  {format(day, 'DD')}
                 </Text>
-              </Query>
-            </Box>
 
-            <Box
-              direction="column"
-              fill="horizontal"
-              pad={{ left: size === 'small' && 'medium' }}
-              css={css`
-                order: ${size === 'small' ? 1 : 0};
-              `}
-            >
-              {eventsOfTheDay.length > 0 && <Events events={eventsOfTheDay} />}
+                <Query sizes={['small']}>
+                  <Text color={isSameDay(day, today) && 'green'} size="small">
+                    {format(day, 'dddd')}
+                  </Text>
+                </Query>
+              </Box>
+
+              <Box
+                direction="column"
+                fill="horizontal"
+                pad={{ left: size === 'small' && 'medium' }}
+                css={css`
+                  order: ${size === 'small' ? 1 : 0};
+                `}
+              >
+                {eventsOfTheDay.length > 0 && (
+                  <Events events={eventsOfTheDay} />
+                )}
+              </Box>
             </Box>
-          </Box>
-        )}
-      </ResponsiveContext.Consumer>
-    </Box>
+          </CalendarBox>
+        )
+      }
+    </ResponsiveContext.Consumer>
   )
 }
 
@@ -102,7 +107,7 @@ const Days = ({ days, events, month, showModal }) =>
 
 Days.propTypes = {
   days: PropTypes.number.isRequired,
-  events: PropTypes.arrayOf(Event.propTypes.event).isRequired,
+  events: PropTypes.array,
   month: PropTypes.instanceOf(Date).isRequired,
   showModal: PropTypes.func.isRequired,
 }

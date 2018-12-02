@@ -7,12 +7,20 @@ const CalendarBox = styled(Box).attrs({
   pad: 'small',
   border: 'all',
 })`
+  cursor: ${props => props.onClick ? 'pointer' : 'inherit'};
   width: calc(100% / 7);
+  
+  @media only screen and
+    (max-width: 768px) {
+    width: 100%;
+    height: inherit;
+  }
 `
 
 CalendarBox.propTypes = {
   square: PropTypes.bool,
   children: PropTypes.node,
+  onClick: PropTypes.func,
 }
 
 export default CalendarBox

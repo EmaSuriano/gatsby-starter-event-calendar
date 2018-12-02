@@ -1,11 +1,6 @@
 import { StaticQuery, graphql } from 'gatsby'
 import React, { Component } from 'react'
-import {
-  isBefore,
-  format,
-  differenceInMonths,
-  differenceInCalendarDays,
-} from 'date-fns'
+import { format } from 'date-fns'
 import { Box } from 'grommet'
 import Layout from '../components/Layout'
 import Month from '../components/Calendar/Month'
