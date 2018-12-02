@@ -1,16 +1,39 @@
 import { StaticQuery, graphql } from 'gatsby'
 import React, { Component } from 'react'
-import format from 'date-fns/format'
+import {
+  isBefore,
+  format,
+  differenceInMonths,
+  differenceInCalendarDays,
+} from 'date-fns'
 import { Box } from 'grommet'
 import Layout from '../components/Layout'
 import Month from '../components/Calendar/Month'
 import ModalEvent from '../components/ModalEvent'
 import fakeData from '../../fakeData.json'
 
-const groupEventsByMonth = data => {
+const isGreaterInMonth = monthsDifference => (date, dateToCompare) => {
+  const totalMonth = dateProp =>
+    parseInt(format(dateProp, 'MM'), 10) +
+    parseInt(format(dateProp, 'YY'), 10) * 12
+
+  const monthsDate = totalMonth(date)
+  const monthsDateToCompare = totalMonth(dateToCompare)
+  const difference = monthsDateToCompare - monthsDate
+
+  return difference >= 0 && difference <= monthsDifference
+}
+
+const groupEventsByMonth = (data, monthsDifference) => {
+  const today = new Date()
+  const isEventValid = isGreaterInMonth(monthsDifference)
   const eventsByMonthKey = data.allGoogleSheetEventosRow.edges.reduce(
     (acc, { node }) => {
-      const monthYear = format(new Date(node.date), 'MM-YYYY')
+      const eventDate = new Date(node.date)
+
+      if (!isEventValid(today, eventDate)) return acc
+
+      const monthYear = format(eventDate, 'MM-YYYY')
       if (!acc[monthYear]) {
         return {
           ...acc,
@@ -52,7 +75,7 @@ class CalendarPage extends Component {
 
   render() {
     const { currentDay, eventsOfTheDay, showModal } = this.state
-    const groupedEvents = groupEventsByMonth(fakeData)
+    const groupedEvents = groupEventsByMonth(fakeData, 2)
 
     return (
       <Layout>
