@@ -1,54 +1,8 @@
-import { StaticQuery, graphql } from 'gatsby'
 import React, { Component } from 'react'
-import { format } from 'date-fns'
 import { Box } from 'grommet'
 import Layout from '../components/Layout'
-import Month from '../components/Calendar/Month'
+import Calendar from '../components/Calendar/Calendar'
 import ModalEvent from '../components/ModalEvent'
-import fakeData from '../../fakeData.json'
-
-const isGreaterInMonth = monthsDifference => (date, dateToCompare) => {
-  const totalMonth = dateProp =>
-    parseInt(format(dateProp, 'MM'), 10) +
-    parseInt(format(dateProp, 'YY'), 10) * 12
-
-  const monthsDate = totalMonth(date)
-  const monthsDateToCompare = totalMonth(dateToCompare)
-  const difference = monthsDateToCompare - monthsDate
-
-  return difference >= 0 && difference <= monthsDifference
-}
-
-const groupEventsByMonth = (data, monthsDifference) => {
-  const today = new Date()
-  const isEventValid = isGreaterInMonth(monthsDifference)
-  const eventsByMonthKey = data.allGoogleSheetEventosRow.edges.reduce(
-    (acc, { node }) => {
-      const eventDate = new Date(node.date)
-
-      if (!isEventValid(today, eventDate)) return acc
-
-      const monthYear = format(eventDate, 'MM-YYYY')
-      if (!acc[monthYear]) {
-        return {
-          ...acc,
-          [monthYear]: [node],
-        }
-      }
-
-      return {
-        ...acc,
-        [monthYear]: acc[monthYear].concat(node),
-      }
-    },
-    {},
-  )
-  const result = Object.keys(eventsByMonthKey).map(monthKey => ({
-    events: eventsByMonthKey[monthKey],
-    date: monthKey,
-  }))
-  return result
-}
 
 class CalendarPage extends Component {
   initialState = {
@@ -70,56 +24,11 @@ class CalendarPage extends Component {
 
   render() {
     const { currentDay, eventsOfTheDay, showModal } = this.state
-    const groupedEvents = groupEventsByMonth(fakeData, 2)
 
     return (
       <Layout>
         <Box animation="fadeIn" pad="large">
-          {/* <StaticQuery
-              query={graphql`
-                {
-                  allGoogleSheetEventosRow {
-                    edges {
-                      node {
-                        id
-                        date: fecha
-                        eventName: nombre
-                        eventLink: link
-                        place: lugar
-                      }
-                    }
-                  }
-                }
-              `}
-              render={data => {
-                const events = data.allGoogleSheetEventosRow.edges.map(
-                  ({ node }) => node,
-                )
-                const monthlyCalendar = {
-                  events,
-                  when: {
-                    month: 'noviembre',
-                    year: '18',
-                  },
-                }
-                console.log(events)
-                return (
-                  <Month
-                    monthlyCalendar={monthlyCalendar}
-                    events={events}
-                    showModal={this.showModal}
-                  />
-                )
-              }}
-            /> */}
-
-          {groupedEvents.map(monthlyCalendar => (
-            <Month
-              monthlyCalendar={monthlyCalendar}
-              showModal={this.showModal}
-              key={monthlyCalendar.date}
-            />
-          ))}
+          <Calendar showModal={this.showModal} />
         </Box>
         {showModal && (
           <ModalEvent

@@ -28,7 +28,6 @@ const Day = ({ day, events, showModal }) => {
 
   const bgColor = getBgColor(day, today)
   const visibleInMobile = isVisibleInMobile(day, today)
-  console.log(visibleInMobile)
   const eventsOfTheDay = getEventsOfTheDay(events, day)
   const onClick = () => showModal(eventsOfTheDay, day)
 

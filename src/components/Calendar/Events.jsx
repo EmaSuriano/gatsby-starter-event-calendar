@@ -11,8 +11,6 @@ const Events = ({ events }) => {
     </span>
   )
 
-  console.log(events)
-
   return (
     <>
       <ul className="list ma0 pl0">

@@ -1,3 +1,5 @@
+const credentials = require('./credentials.json')
+
 module.exports = {
   siteMetadata: {
     title: 'Gatsby Default Starter',
@@ -26,16 +28,14 @@ module.exports = {
         icon: 'src/images/gatsby-icon.png', // This path is relative to the root of the site.
       },
     },
-    // {
-    //   resolve: 'gatsby-source-google-sheets',
-    //   options: {
-    //     spreadsheetId: '1yCanjlkn94LCmIqsX33AbjAq30gpO9hm0RTot9qOt5M',
-    //     worksheetTitle: 'Eventos',
-    //     credentials: require('./credentials.json'),
-    //   },
-    // },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.app/offline
-    // 'gatsby-plugin-offline',
+    {
+      resolve: 'gatsby-source-google-sheets',
+      options: {
+        spreadsheetId: '1VbKFMnTt-r_cW_wq3fQCwbbmtic3qyq1-FYtchNYLo4',
+        worksheetTitle: 'Events',
+        credentials,
+      },
+    },
+    'gatsby-plugin-offline',
   ],
 }
