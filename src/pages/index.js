@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Box } from 'grommet'
 import Layout from '../components/Layout'
-import Calendar from '../components/Calendar/Calendar'
+import Calendar from '../components/Calendar'
 import ModalEvent from '../components/ModalEvent'
 
 class CalendarPage extends Component {
