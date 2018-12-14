@@ -13,6 +13,8 @@ const buildCredentials = ({ PROJECT_ID, PRIVATE_KEY, PRIVATE_KEY_ID }) => ({
   client_x509_cert_url: `https://www.googleapis.com/robot/v1/metadata/x509/${PROJECT_ID}%40appspot.gserviceaccount.com`,
 })
 
+console.log(buildCredentials(process.env))
+
 module.exports = {
   siteMetadata: {
     title: 'Gatsby Default Starter',
@@ -38,7 +40,7 @@ module.exports = {
         background_color: '#663399',
         theme_color: '#663399',
         display: 'minimal-ui',
-        icon: 'src/images/gatsby-icon.png', // This path is relative to the root of the site.
+        icon: 'src/images/calendar.png', // This path is relative to the root of the site.
       },
     },
     {

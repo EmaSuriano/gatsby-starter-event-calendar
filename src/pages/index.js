@@ -3,6 +3,7 @@ import { Box } from 'grommet'
 import Layout from '../components/Layout'
 import Calendar from '../components/Calendar'
 import ModalEvent from '../components/ModalEvent'
+import Hero from '../components/Hero';
 
 class CalendarPage extends Component {
   initialState = {
@@ -27,6 +28,7 @@ class CalendarPage extends Component {
 
     return (
       <Layout>
+        <Hero>Hallo!</Hero>
         <Box animation="fadeIn" pad="large">
           <Calendar showModal={this.showModal} />
         </Box>
