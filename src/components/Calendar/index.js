@@ -3,7 +3,6 @@ import React from 'react'
 import { format } from 'date-fns'
 import PropTypes from 'prop-types'
 import Month from './Month'
-// import fakeData from '../../fakeData.json'
 
 const SPREADSHEET_QUERY = graphql`
   query eventsQuery {
