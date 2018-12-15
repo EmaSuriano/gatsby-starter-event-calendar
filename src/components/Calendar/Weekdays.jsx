@@ -19,7 +19,7 @@ const Weekdays = () => {
       <Box border="all" direction="row" wrap>
         {weekdays.map(weekday => (
           <CalendarBox>
-            <Text textAlign="center">{weekday}</Text>
+            <Text textAlign="center" truncate>{weekday}</Text>
           </CalendarBox>  
         ))}
       </Box>

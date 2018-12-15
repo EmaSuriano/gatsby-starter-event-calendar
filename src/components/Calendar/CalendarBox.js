@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 const CalendarBox = styled(Box).attrs({
   height: props => props.square && '8rem',
-  pad: 'small',
+  pad: 'xsmall',
   border: 'all',
 })`
   cursor: ${props => props.onClick ? 'pointer' : 'inherit'};

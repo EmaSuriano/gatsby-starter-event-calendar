@@ -11,7 +11,6 @@ const ModalEvent = ({ hideModal, currentDay, events }) => (
     position="center"
     onClickOutside={hideModal}
     onEsc={hideModal}
-    responsive
     modal
   >
     <Box
@@ -33,7 +32,7 @@ const ModalEvent = ({ hideModal, currentDay, events }) => (
       margin="medium"
       gap="small"
     >
-      {[...events, ...events]
+      {events
         .sort((eventA, eventB) => new Date(eventA.date) - new Date(eventB.date))
         .map(event => (
           <Box elevation="small" direction="row">

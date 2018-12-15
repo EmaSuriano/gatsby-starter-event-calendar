@@ -1,13 +1,17 @@
 import PropTypes from 'prop-types'
-import { Box } from 'grommet'
+import { Box, Text } from 'grommet'
 import React from 'react'
-import styled from 'styled-components';
 
-const Event2 = styled.li`
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  border: 1px solid grey;
-`
+const Event = ({ children }) => (
+  <Box margin={{ bottom: 'xsmall' }} round="xsmall" background="secondary" pad="xsmall">
+    <Text size="small" truncate>
+      {children}
+    </Text>
+  </Box>
+)
 
-export default Event2
+Event.propTypes = {
+  children: PropTypes.node,
+}
+
+export default Event

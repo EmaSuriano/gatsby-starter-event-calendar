@@ -10,10 +10,6 @@ import Event from './Event'
 import Query from '../Query'
 import CalendarBox from './CalendarBox'
 
-const getBgColor = (currentDay, today) =>
-  (isSameDay(currentDay, today) && 'lightgreen') ||
-  (isBefore(currentDay, today) && 'gray')
-
 const isVisibleInMobile = (currentDay, today) =>
   isBefore(today, currentDay) || isSameDay(today, currentDay)
 
@@ -26,10 +22,90 @@ const getStrike = (currentDay, today) =>
 const Day = ({ day, events, showModal }) => {
   const today = new Date()
 
-  const bgColor = getBgColor(day, today)
+  const isToday = isSameDay(day, today)
+  const hasPast = isBefore(day, today)
+
+  const background = (isToday && 'primary') || (hasPast && 'disabled')
   const visibleInMobile = isVisibleInMobile(day, today)
   const eventsOfTheDay = getEventsOfTheDay(events, day)
   const onClick = () => showModal(eventsOfTheDay, day)
+
+  return [
+    <Query sizes={['small']} inverse>
+      <CalendarBox
+        key={day.getTime()}
+        background={background}
+        {...eventsOfTheDay.length && { onClick }}
+        square
+      >
+        <Box direction="column" fill="vertical">
+          <Box direction="column" fill="horizontal">
+            <Events events={eventsOfTheDay} />
+          </Box>
+          <Box
+            direction="column"
+            margin={{ top: 'auto' }}
+            width="xsmall"
+            alignSelf="end"
+          >
+            <Text
+              color={isToday && 'green'}
+              size="large"
+              textAlign="end"
+              css={css`
+                text-decoration: ${getStrike(day, today) && 'line-through'};
+              `}
+            >
+              {format(day, 'DD')}
+            </Text>
+          </Box>
+        </Box>
+      </CalendarBox>
+    </Query>,
+    <Query sizes={['small']}>
+      {visibleInMobile && (
+        <CalendarBox
+          key={day.getTime()}
+          background={background}
+          {...eventsOfTheDay.length && { onClick }}
+          square
+        >
+          <Box direction="row" fill="vertical">
+            <Box
+              direction="column"
+              margin={{ top: 'auto' }}
+              width="xsmall"
+              alignSelf="end"
+              pad="small"
+            >
+              <Text
+                color={isSameDay(day, today) && 'green'}
+                size="large"
+                textAlign="start"
+                css={css`
+                  text-decoration: ${getStrike(day, today) && 'line-through'};
+                `}
+              >
+                {format(day, 'DD')}
+              </Text>
+
+              <Text
+                color={isSameDay(day, today) && 'green'}
+                size="small"
+                truncate
+              >
+                {format(day, 'dddd')}
+              </Text>
+            </Box>
+
+            <Box direction="column" fill="horizontal" pad="small">
+              <Events events={eventsOfTheDay} />
+            </Box>
+          </Box>
+        </CalendarBox>
+      )}
+    </Query>,
+  ]
 
   return (
     <ResponsiveContext.Consumer>
@@ -37,9 +113,9 @@ const Day = ({ day, events, showModal }) => {
         (size !== 'small' || (size === 'small' && visibleInMobile)) && (
           <CalendarBox
             key={day.getTime()}
-            square
-            background={bgColor}
+            background={background}
             {...eventsOfTheDay.length && { onClick }}
+            square
           >
             <Box
               direction={size === 'small' ? 'row' : 'column'}
@@ -66,7 +142,11 @@ const Day = ({ day, events, showModal }) => {
                 </Text>
 
                 <Query sizes={['small']}>
-                  <Text color={isSameDay(day, today) && 'green'} size="small">
+                  <Text
+                    color={isSameDay(day, today) && 'green'}
+                    size="small"
+                    truncate
+                  >
                     {format(day, 'dddd')}
                   </Text>
                 </Query>

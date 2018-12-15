@@ -1,3 +1,4 @@
+const appConfig = require('./appConfig')
 require('dotenv').config()
 
 const buildCredentials = ({ PROJECT_ID, PRIVATE_KEY, PRIVATE_KEY_ID }) => ({
@@ -12,8 +13,6 @@ const buildCredentials = ({ PROJECT_ID, PRIVATE_KEY, PRIVATE_KEY_ID }) => ({
   auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
   client_x509_cert_url: `https://www.googleapis.com/robot/v1/metadata/x509/${PROJECT_ID}%40appspot.gserviceaccount.com`,
 })
-
-console.log(buildCredentials(process.env))
 
 module.exports = {
   siteMetadata: {
@@ -34,13 +33,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'gatsby-starter-default',
-        short_name: 'starter',
+        name: 'gatsby-starter-event-calendar',
+        short_name: 'starter-calendar',
         start_url: '/',
-        background_color: '#663399',
-        theme_color: '#663399',
+        background_color: appConfig.colors.primary,
+        theme_color: appConfig.colors.primary,
         display: 'minimal-ui',
-        icon: 'src/images/calendar.png', // This path is relative to the root of the site.
+        icon: 'src/images/calendar.png',
       },
     },
     {

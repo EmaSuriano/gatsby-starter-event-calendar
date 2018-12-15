@@ -3,14 +3,27 @@ import PropTypes from 'prop-types'
 import { Grommet } from 'grommet'
 import { grommet } from 'grommet/themes'
 import Helmet from './Helmet'
-import 'tachyons/css/tachyons.min.css'
-import './moarStyles.css'
+import ConfigContext from './ConfigContext'
 
 const Layout = ({ children }) => (
-  <Grommet theme={grommet}>
-    <Helmet />
-    {children}
-  </Grommet>
+  <ConfigContext.Consumer>
+    {appConfig => {
+      const { colors } = appConfig
+      const theme = {
+        ...grommet,
+        global: {
+          ...grommet.global,
+          colors,
+        },
+      }
+      return (
+        <Grommet theme={theme}>
+          <Helmet />
+          {children}
+        </Grommet>
+      )
+    }}
+  </ConfigContext.Consumer>
 )
 
 Layout.propTypes = {

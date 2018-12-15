@@ -1,28 +1,41 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+import { Text } from 'grommet'
+import styled from 'styled-components'
 import Event from './Event'
+import ConfigContext from '../ConfigContext'
 
-const Events = ({ events }) => {
-  const thereAreMoreEventsLabel = events.length > 2 && (
-    <span className="black-alternative dn f6 mt2 truncate db-l">
-      <span>y </span>
-      <span>{events.length - 2}</span>
-      <span> más</span>
-    </span>
+const EventList = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style: none;
+`
+
+const Events = ({ events }) =>
+  events.length > 0 && (
+    <ConfigContext.Consumer>
+      {({ maxAmountEvents }) => {
+        const availableEvents = events.slice(0, maxAmountEvents + 1)
+        return (
+          <EventList>
+            {availableEvents.map((event, i) => (
+              <li key={event.shortid}>
+                {i < maxAmountEvents && <Event>{event.eventName}</Event>}
+                {i === maxAmountEvents && (
+                  <Text size="small" truncate>
+                    {`And ${events.length - maxAmountEvents} more ...`}
+                  </Text>
+                )}
+              </li>
+            ))}
+          </EventList>
+        )
+      }}
+    </ConfigContext.Consumer>
   )
 
-  return (
-    <>
-      <ul className="list ma0 pl0">
-        {events.map(event => (
-          <Event key={event.shortid}>{event.eventName}</Event>
-        ))}
-      </ul>
-      {thereAreMoreEventsLabel}
-    </>
-  )
+Events.propTypes = {
+  events: PropTypes.array,
 }
-
-Events.propTypes = {}
 
 export default Events
