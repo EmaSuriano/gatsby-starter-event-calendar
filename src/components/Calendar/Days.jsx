@@ -3,44 +3,35 @@ import isSameDay from 'date-fns/is_same_day'
 import format from 'date-fns/format'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { Text, ResponsiveContext, Box } from 'grommet'
+import { Text, Box } from 'grommet'
 import { css } from 'styled-components'
 import Events from './Events'
-import Event from './Event'
 import Query from '../Query'
 import CalendarBox from './CalendarBox'
-
-const isVisibleInMobile = (currentDay, today) =>
-  isBefore(today, currentDay) || isSameDay(today, currentDay)
-
-const getEventsOfTheDay = (eventsInMonth, day) =>
-  eventsInMonth.filter(event => isSameDay(event.date, day))
 
 const getStrike = (currentDay, today) =>
   isBefore(currentDay, today) && !isSameDay(currentDay, today)
 
-const Day = ({ day, events, showModal }) => {
+const Day = ({ day, events, onClick }) => {
   const today = new Date()
 
   const isToday = isSameDay(day, today)
   const hasPast = isBefore(day, today)
 
-  const background = (isToday && 'primary') || (hasPast && 'disabled')
-  const visibleInMobile = isVisibleInMobile(day, today)
-  const eventsOfTheDay = getEventsOfTheDay(events, day)
-  const onClick = () => showModal(eventsOfTheDay, day)
+  const dayType = (isToday && 'today') || (hasPast && 'past-day') || 'day'
 
   return [
     <Query sizes={['small']} inverse>
       <CalendarBox
         key={day.getTime()}
-        background={background}
-        {...eventsOfTheDay.length && { onClick }}
+        background={`${dayType}-background`}
+        {...events.length && { onClick }}
+        border={{ color: `${dayType}-border-color` }}
         square
       >
         <Box direction="column" fill="vertical">
           <Box direction="column" fill="horizontal">
-            <Events events={eventsOfTheDay} />
+            <Events events={events} />
           </Box>
           <Box
             direction="column"
@@ -49,11 +40,11 @@ const Day = ({ day, events, showModal }) => {
             alignSelf="end"
           >
             <Text
-              color={isToday && 'green'}
+              color={`${dayType}-font-color`}
               size="large"
               textAlign="end"
               css={css`
-                text-decoration: ${getStrike(day, today) && 'line-through'};
+                text-decoration: ${hasPast && !isToday && 'line-through'};
               `}
             >
               {format(day, 'DD')}
@@ -63,11 +54,12 @@ const Day = ({ day, events, showModal }) => {
       </CalendarBox>
     </Query>,
     <Query sizes={['small']}>
-      {visibleInMobile && (
+      {(!hasPast || isToday) && (
         <CalendarBox
           key={day.getTime()}
-          background={background}
-          {...eventsOfTheDay.length && { onClick }}
+          background={`${dayType}-background`}
+          border={{ color: `${dayType}-border-color` }}
+          {...events.length && { onClick }}
           square
         >
           <Box direction="row" fill="vertical">
@@ -79,7 +71,7 @@ const Day = ({ day, events, showModal }) => {
               pad="small"
             >
               <Text
-                color={isSameDay(day, today) && 'green'}
+                color={`${dayType}-font-color`}
                 size="large"
                 textAlign="start"
                 css={css`
@@ -89,87 +81,19 @@ const Day = ({ day, events, showModal }) => {
                 {format(day, 'DD')}
               </Text>
 
-              <Text
-                color={isSameDay(day, today) && 'green'}
-                size="small"
-                truncate
-              >
+              <Text color={`${dayType}-font-color`} size="small" truncate>
                 {format(day, 'dddd')}
               </Text>
             </Box>
 
             <Box direction="column" fill="horizontal" pad="small">
-              <Events events={eventsOfTheDay} />
+              <Events events={events} />
             </Box>
           </Box>
         </CalendarBox>
       )}
     </Query>,
   ]
-
-  return (
-    <ResponsiveContext.Consumer>
-      {size =>
-        (size !== 'small' || (size === 'small' && visibleInMobile)) && (
-          <CalendarBox
-            key={day.getTime()}
-            background={background}
-            {...eventsOfTheDay.length && { onClick }}
-            square
-          >
-            <Box
-              direction={size === 'small' ? 'row' : 'column'}
-              fill="vertical"
-            >
-              <Box
-                direction="column"
-                margin={{ top: 'auto' }}
-                width="xsmall"
-                alignSelf="end"
-                css={css`
-                  order: 1;
-                `}
-              >
-                <Text
-                  color={isSameDay(day, today) && 'green'}
-                  size="large"
-                  textAlign={size === 'small' ? 'start' : 'end'}
-                  css={css`
-                    text-decoration: ${getStrike(day, today) && 'line-through'};
-                  `}
-                >
-                  {format(day, 'DD')}
-                </Text>
-
-                <Query sizes={['small']}>
-                  <Text
-                    color={isSameDay(day, today) && 'green'}
-                    size="small"
-                    truncate
-                  >
-                    {format(day, 'dddd')}
-                  </Text>
-                </Query>
-              </Box>
-
-              <Box
-                direction="column"
-                fill="horizontal"
-                pad={{ left: size === 'small' && 'medium' }}
-                css={css`
-                  order: ${size === 'small' ? 1 : 0};
-                `}
-              >
-                {eventsOfTheDay.length > 0 && (
-                  <Events events={eventsOfTheDay} />
-                )}
-              </Box>
-            </Box>
-          </CalendarBox>
-        )
-      }
-    </ResponsiveContext.Consumer>
-  )
 }
 
 const Days = ({ days, events, month, showModal }) =>
@@ -177,11 +101,12 @@ const Days = ({ days, events, month, showModal }) =>
     .fill(null)
     .map((x, i) => {
       const currentDay = new Date(month.getFullYear(), month.getMonth(), i + 1)
-      const eventsOfTheDay = getEventsOfTheDay(events, currentDay)
-
-      return (
-        <Day day={currentDay} events={eventsOfTheDay} showModal={showModal} />
+      const eventsOfTheDay = events.filter(event =>
+        isSameDay(event.date, currentDay),
       )
+      const onClick = () => showModal(eventsOfTheDay, currentDay)
+
+      return <Day day={currentDay} events={eventsOfTheDay} onClick={onClick} />
     })
 
 Days.propTypes = {

@@ -5,9 +5,27 @@ module.exports = {
   maxAmountEvents: 2,
   colors: {
     background: 'white',
-    primary: 'pink',
-    secondary: 'lightgreen',
-    disabled: 'lightgrey',
-    emptyDay: 'lightblue'
-  }
+
+    'today-background': 'pink',
+    'today-font-color': 'violet',
+    'today-border-color': 'violet',
+
+    'day-background': 'white',
+    'day-font-color': 'black',
+    'day-border-color': 'grey',
+
+    'past-day-background': 'lightgrey',
+    'past-day-font-color': 'black',
+    'past-day-border-color': 'grey',
+
+    'empty-day-background': 'lightblue',
+    'empty-day-border-color': 'grey',
+
+    'weekday-background': 'white',
+    'weekday-font-color': 'black',
+    'weekday-border-color': 'grey',
+
+    'event-background': 'lightgreen',
+    'event-font-color': 'green',
+  },
 }

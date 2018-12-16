@@ -6,7 +6,11 @@ import Query from '../Query'
 const EmptyDays = ({ days }) => (
   <Query sizes={['small']} inverse>
     {Array(days).fill(
-      <CalendarBox background="emptyDay" square />,
+      <CalendarBox
+        background="empty-day-background"
+        border={{ color: 'empty-day-border-color' }}
+        square
+      />,
     )}
   </Query>
 )
