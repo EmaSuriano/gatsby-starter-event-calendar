@@ -21,9 +21,9 @@ module.exports = {
     'empty-day-background': 'lightblue',
     'empty-day-border-color': 'grey',
 
-    'weekday-background': 'white',
-    'weekday-font-color': 'black',
-    'weekday-border-color': 'grey',
+    'weekdays-background': 'white',
+    'weekdays-font-color': 'black',
+    'weekdays-border-color': 'grey',
 
     'event-background': 'lightgreen',
     'event-font-color': 'green',

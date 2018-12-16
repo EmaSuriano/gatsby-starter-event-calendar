@@ -1,15 +1,8 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { Text } from 'grommet'
-import styled from 'styled-components'
+import { Text, Box, css } from 'grommet'
 import Event from './Event'
 import ConfigContext from '../ConfigContext'
-
-const EventList = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style: none;
-`
 
 const Events = ({ events }) =>
   events.length > 0 && (
@@ -17,9 +10,16 @@ const Events = ({ events }) =>
       {({ maxAmountEvents }) => {
         const availableEvents = events.slice(0, maxAmountEvents + 1)
         return (
-          <EventList>
+          <Box
+            gap="xsmall"
+            pad="none"
+            tag="ul"
+            css={css`
+              list-style: none;
+            `}
+          >
             {availableEvents.map((event, i) => (
-              <li key={event.shortid}>
+              <li key={event.id}>
                 {i < maxAmountEvents && <Event>{event.eventName}</Event>}
                 {i === maxAmountEvents && (
                   <Text size="small" truncate>
@@ -28,7 +28,7 @@ const Events = ({ events }) =>
                 )}
               </li>
             ))}
-          </EventList>
+          </Box>
         )
       }}
     </ConfigContext.Consumer>

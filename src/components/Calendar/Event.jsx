@@ -3,12 +3,7 @@ import { Box, Text } from 'grommet'
 import React from 'react'
 
 const Event = ({ children }) => (
-  <Box
-    margin={{ bottom: 'xsmall' }}
-    round="xsmall"
-    background="event-background"
-    pad="xsmall"
-  >
+  <Box round="xsmall" background="event-background" pad="xsmall">
     <Text size="small" truncate color="event-font-color">
       {children}
     </Text>

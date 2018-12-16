@@ -1,21 +1,26 @@
-import { Box } from 'grommet'
-import styled from 'styled-components'
+import React from 'react'
+import { Box, ResponsiveContext, css } from 'grommet'
 import PropTypes from 'prop-types'
 
-const CalendarBox = styled(Box).attrs({
-  height: props => props.square && '8rem',
-  pad: 'xsmall',
-  border: 'all',
-})`
-  cursor: ${props => props.onClick ? 'pointer' : 'inherit'};
-  width: calc(100% / 7);
-  
-  @media only screen and
-    (max-width: 768px) {
-    width: 100%;
-    height: inherit;
-  }
-`
+const CalendarBox = ({ square, children, onClick, ...rest }) => (
+  <ResponsiveContext.Consumer>
+    {size => (
+      <Box
+        onClick={onClick}
+        height={square && size !== 'small' && '8rem'}
+        width="calc(100% / 7)"
+        pad="xsmall"
+        fill={size === 'small' && 'horizontal'}
+        css={css`
+          cursor: ${onClick && 'pointer'};
+        `}
+        {...rest}
+      >
+        {children}
+      </Box>
+    )}
+  </ResponsiveContext.Consumer>
+)
 
 CalendarBox.propTypes = {
   square: PropTypes.bool,

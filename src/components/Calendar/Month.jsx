@@ -9,9 +9,12 @@ import Weekdays from './Weekdays'
 
 const Month = ({ monthlyCalendar, showModal }) => {
   const [currentMonthNumber, currentYear] = monthlyCalendar.date.split('-')
-  const monthDate = parseInt(currentMonthNumber, 10) - 1
-  const today = new Date()
-  const currentMonth = new Date(today.getFullYear(), monthDate, 1)
+
+  const currentMonth = new Date(
+    currentYear,
+    parseInt(currentMonthNumber, 10) - 1,
+    1,
+  )
   const currentMonthIsoDay = getISODay(currentMonth)
   const currentMonthDays = getDaysInMonth(currentMonth)
   const emptyDaysAtEnd = 7 - ((currentMonthIsoDay + currentMonthDays) % 7)
@@ -19,10 +22,11 @@ const Month = ({ monthlyCalendar, showModal }) => {
   return (
     <Box margin={{ top: 'medium' }}>
       <Heading>
-        {format(new Date(currentYear, monthDate, 1), 'MMMM YYYY')}
+        <b>{`${format(currentMonth, 'MMMM')} `}</b>
+        {format(currentMonth, 'YYYY')}
       </Heading>
       <Weekdays />
-      <Box border="all" direction="row" wrap>
+      <Box direction="row" wrap>
         {currentMonthIsoDay !== 7 && <EmptyDays days={currentMonthIsoDay} />}
         <Days
           days={currentMonthDays}

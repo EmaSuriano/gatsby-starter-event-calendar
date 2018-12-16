@@ -16,11 +16,16 @@ const Weekdays = () => {
   const weekdays = getWeekdays()
   return (
     <Query sizes={['small']} inverse>
-      <Box border="all" direction="row" wrap>
+      <Box direction="row" wrap>
         {weekdays.map(weekday => (
-          <CalendarBox>
-            <Text textAlign="center" truncate>{weekday}</Text>
-          </CalendarBox>  
+          <CalendarBox
+            border={{ color: 'weekdays-border-color' }}
+            background="weekdays-background"
+          >
+            <Text textAlign="center" color="weekdays-font-color" truncate>
+              {weekday}
+            </Text>
+          </CalendarBox>
         ))}
       </Box>
     </Query>

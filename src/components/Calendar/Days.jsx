@@ -106,7 +106,14 @@ const Days = ({ days, events, month, showModal }) =>
       )
       const onClick = () => showModal(eventsOfTheDay, currentDay)
 
-      return <Day day={currentDay} events={eventsOfTheDay} onClick={onClick} />
+      return (
+        <Day
+          key={format(currentDay, 'DD-MM-YY')}
+          day={currentDay}
+          events={eventsOfTheDay}
+          onClick={onClick}
+        />
+      )
     })
 
 Days.propTypes = {
