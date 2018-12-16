@@ -6,6 +6,7 @@ import Days from './Days'
 import EmptyDays from './EmptyDays'
 import Events from './Events'
 import Weekdays from './Weekdays'
+import Query from '../Query'
 
 const Month = ({ monthlyCalendar, showModal }) => {
   const [currentMonthNumber, currentYear] = monthlyCalendar.date.split('-')
@@ -25,7 +26,9 @@ const Month = ({ monthlyCalendar, showModal }) => {
         <b>{`${format(currentMonth, 'MMMM')} `}</b>
         {format(currentMonth, 'YYYY')}
       </Heading>
-      <Weekdays />
+      <Query sizes={['small']} inverse>
+        <Weekdays />
+      </Query>
       <Box direction="row" wrap>
         {currentMonthIsoDay !== 7 && <EmptyDays days={currentMonthIsoDay} />}
         <Days

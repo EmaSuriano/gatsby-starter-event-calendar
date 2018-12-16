@@ -20,6 +20,12 @@ const Day = ({ day, events, onClick }) => {
 
   const dayType = (isToday && 'today') || (hasPast && 'past-day') || 'day'
 
+  const eventsSection = (
+    <Box direction="column" fill="horizontal">
+      <Events events={events} />
+    </Box>
+  )
+
   return [
     <Query sizes={['small']} inverse>
       <CalendarBox
@@ -27,12 +33,11 @@ const Day = ({ day, events, onClick }) => {
         background={`${dayType}-background`}
         {...events.length && { onClick }}
         border={{ color: `${dayType}-border-color` }}
+        pad="xsmall"
         square
       >
         <Box direction="column" fill="vertical">
-          <Box direction="column" fill="horizontal">
-            <Events events={events} />
-          </Box>
+          {eventsSection}
           <Box
             direction="column"
             margin={{ top: 'auto' }}
@@ -59,6 +64,7 @@ const Day = ({ day, events, onClick }) => {
           key={day.getTime()}
           background={`${dayType}-background`}
           border={{ color: `${dayType}-border-color` }}
+          pad="small"
           {...events.length && { onClick }}
           square
         >
@@ -68,7 +74,6 @@ const Day = ({ day, events, onClick }) => {
               margin={{ top: 'auto' }}
               width="xsmall"
               alignSelf="end"
-              pad="small"
             >
               <Text
                 color={`${dayType}-font-color`}
@@ -85,10 +90,7 @@ const Day = ({ day, events, onClick }) => {
                 {format(day, 'dddd')}
               </Text>
             </Box>
-
-            <Box direction="column" fill="horizontal" pad="small">
-              <Events events={events} />
-            </Box>
+            {eventsSection}
           </Box>
         </CalendarBox>
       )}
