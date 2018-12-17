@@ -5,7 +5,7 @@ const buildCredentials = ({ PROJECT_ID, PRIVATE_KEY, PRIVATE_KEY_ID }) => ({
   type: 'service_account',
   project_id: PROJECT_ID,
   private_key_id: PRIVATE_KEY_ID,
-  private_key: PRIVATE_KEY,
+  private_key: `-----BEGIN PRIVATE KEY-----\n${PRIVATE_KEY}\n-----END PRIVATE KEY-----\n`,
   client_email: `${PROJECT_ID}@appspot.gserviceaccount.com`,
   client_id: '',
   auth_uri: 'https://accounts.google.com/o/oauth2/auth',

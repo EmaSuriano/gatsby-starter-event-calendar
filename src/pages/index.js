@@ -1,10 +1,28 @@
 import React, { Component } from 'react'
+import { StaticQuery, graphql } from 'gatsby'
 import { Box } from 'grommet'
 import Layout from '../components/Layout'
 import Calendar from '../components/Calendar'
 import ModalEvent from '../components/ModalEvent'
 import Hero from '../components/Hero'
 import ConfigContext from '../components/ConfigContext'
+import groupEventsByMonth from '../utils/groupEventsByMonth'
+
+const SPREADSHEET_QUERY = graphql`
+  query eventsQuery {
+    allGoogleSheetEventsRow {
+      edges {
+        node {
+          id
+          eventName: whatisthename
+          date: when
+          place: where
+          eventLink: linktotheevent
+        }
+      }
+    }
+  }
+`
 
 class CalendarPage extends Component {
   initialState = {
@@ -32,7 +50,19 @@ class CalendarPage extends Component {
         <Layout>
           <Hero>Hallo!</Hero>
           <Box animation="fadeIn" pad="medium">
-            <Calendar showModal={this.showModal} />
+            <ConfigContext.Consumer>
+              {({ limitMonthInTheFuture }) => (
+                <StaticQuery
+                  query={SPREADSHEET_QUERY}
+                  render={data => (
+                    <Calendar
+                      showModal={this.showModal}
+                      events={groupEventsByMonth(data, limitMonthInTheFuture)}
+                    />
+                  )}
+                />
+              )}
+            </ConfigContext.Consumer>
           </Box>
           {showModal && (
             <ModalEvent
