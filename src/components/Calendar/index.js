@@ -3,7 +3,8 @@ import React from 'react'
 import { format } from 'date-fns'
 import PropTypes from 'prop-types'
 import Month from './Month'
-import fakeData from './fakeData.json';
+import fakeData from './fakeData.json'
+import ConfigContext from '../ConfigContext'
 
 const SPREADSHEET_QUERY = graphql`
   query eventsQuery {
@@ -36,7 +37,7 @@ const isGreaterInMonth = monthsDifference => (date, dateToCompare) => {
 const groupEventsByMonth = (data, monthsDifference) => {
   const today = new Date()
   const isEventValid = isGreaterInMonth(monthsDifference)
-  
+
   const eventsByMonthKey = data.allGoogleSheetEventsRow.edges.reduce(
     (acc, { node }) => {
       const eventDate = new Date(node.date)
@@ -64,36 +65,39 @@ const groupEventsByMonth = (data, monthsDifference) => {
   return result
 }
 
-// const Calendar = ({ showModal }) => (
-//   <StaticQuery
-//     query={SPREADSHEET_QUERY}
-//     render={data => {
-//       const groupedEvents = groupEventsByMonth(data, 2)
-//       return groupedEvents.map(monthlyCalendar => (
-//         <Month
-//           monthlyCalendar={monthlyCalendar}
-//           showModal={showModal}
-//           key={monthlyCalendar.date}
-//         />
-//       ))
-//     }}
-//   />
-// )
+const Calendar = ({ showModal }) => (
+  <ConfigContext.Consumer>
+    {({ limitMonthInTheFuture }) => (
+      <StaticQuery
+        query={SPREADSHEET_QUERY}
+        render={data => {
+          const groupedEvents = groupEventsByMonth(data, limitMonthInTheFuture)
+          return groupedEvents.map(monthlyCalendar => (
+            <Month
+              monthlyCalendar={monthlyCalendar}
+              showModal={showModal}
+              key={monthlyCalendar.date}
+            />
+          ))
+        }}
+      />
+    )}
+  </ConfigContext.Consumer>
+)
 
-// Calendar.propTypes = {
-//   showModal: PropTypes.func.isRequired,
-// }
-
-const MockedCalendar = ({ showModal }) => {
-  const groupedEvents = groupEventsByMonth(fakeData, 2)
-  return groupedEvents.map(monthlyCalendar => (
-    <Month
-      monthlyCalendar={monthlyCalendar}
-      showModal={showModal}
-      key={monthlyCalendar.date}
-    />
-  ))
+Calendar.propTypes = {
+  showModal: PropTypes.func.isRequired,
 }
 
+// const MockedCalendar = ({ showModal }) => {
+//   const groupedEvents = groupEventsByMonth(fakeData, 2)
+//   return groupedEvents.map(monthlyCalendar => (
+//     <Month
+//       monthlyCalendar={monthlyCalendar}
+//       showModal={showModal}
+//       key={monthlyCalendar.date}
+//     />
+//   ))
+// }
 
-export default MockedCalendar
+export default Calendar
