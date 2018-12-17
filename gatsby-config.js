@@ -14,6 +14,8 @@ const buildCredentials = ({ PROJECT_ID, PRIVATE_KEY, PRIVATE_KEY_ID }) => ({
   client_x509_cert_url: `https://www.googleapis.com/robot/v1/metadata/x509/${PROJECT_ID}%40appspot.gserviceaccount.com`,
 })
 
+console.log(buildCredentials(process.env))
+
 module.exports = {
   siteMetadata: {
     title: 'Gatsby Default Starter',
