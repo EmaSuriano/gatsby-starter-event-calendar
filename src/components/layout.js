@@ -6,24 +6,26 @@ import Helmet from './Helmet'
 import ConfigContext from './ConfigContext'
 
 const Layout = ({ children }) => (
-  <ConfigContext.Consumer>
-    {appConfig => {
-      const { colors } = appConfig
-      const theme = {
-        ...grommet,
-        global: {
-          ...grommet.global,
-          colors,
-        },
-      }
-      return (
-        <Grommet theme={theme}>
-          <Helmet />
-          {children}
-        </Grommet>
-      )
-    }}
-  </ConfigContext.Consumer>
+  <ConfigContext.Provider>
+    <ConfigContext.Consumer>
+      {appConfig => {
+        const { colors } = appConfig
+        const theme = {
+          ...grommet,
+          global: {
+            ...grommet.global,
+            colors,
+          },
+        }
+        return (
+          <Grommet theme={theme}>
+            <Helmet />
+            {children}
+          </Grommet>
+        )
+      }}
+    </ConfigContext.Consumer>
+  </ConfigContext.Provider>
 )
 
 Layout.propTypes = {

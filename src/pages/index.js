@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import { Box } from 'grommet'
-import Layout from '../components/Layout'
 import Calendar from '../components/Calendar'
 import ModalEvent from '../components/ModalEvent'
 import Hero from '../components/Hero'
 import ConfigContext from '../components/ConfigContext'
 import groupEventsByMonth from '../utils/groupEventsByMonth'
+import Layout from '../components/Layout'
 
 const SPREADSHEET_QUERY = graphql`
   query eventsQuery {
@@ -46,33 +46,31 @@ class CalendarPage extends Component {
     const { currentDay, eventsOfTheDay, showModal } = this.state
 
     return (
-      <ConfigContext.Provider>
-        <Layout>
-          <Hero>Hallo!</Hero>
-          <Box animation="fadeIn" pad="medium">
-            <ConfigContext.Consumer>
-              {({ limitMonthInTheFuture }) => (
-                <StaticQuery
-                  query={SPREADSHEET_QUERY}
-                  render={data => (
-                    <Calendar
-                      showModal={this.showModal}
-                      events={groupEventsByMonth(data, limitMonthInTheFuture)}
-                    />
-                  )}
-                />
-              )}
-            </ConfigContext.Consumer>
-          </Box>
-          {showModal && (
-            <ModalEvent
-              hideModal={this.hideModal}
-              currentDay={currentDay}
-              events={eventsOfTheDay}
-            />
-          )}
-        </Layout>
-      </ConfigContext.Provider>
+      <Layout>
+        <Hero>Hallo!</Hero>
+        <Box animation="fadeIn" pad="medium">
+          <ConfigContext.Consumer>
+            {({ limitMonthInTheFuture }) => (
+              <StaticQuery
+                query={SPREADSHEET_QUERY}
+                render={data => (
+                  <Calendar
+                    showModal={this.showModal}
+                    events={groupEventsByMonth(data, limitMonthInTheFuture)}
+                  />
+                )}
+              />
+            )}
+          </ConfigContext.Consumer>
+        </Box>
+        {showModal && (
+          <ModalEvent
+            hideModal={this.hideModal}
+            currentDay={currentDay}
+            events={eventsOfTheDay}
+          />
+        )}
+      </Layout>
     )
   }
 }
