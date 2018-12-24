@@ -6,7 +6,7 @@ import ModalEvent from '../components/ModalEvent'
 import Hero from '../components/Hero'
 import ConfigContext from '../components/ConfigContext'
 import groupEventsByMonth from '../utils/groupEventsByMonth'
-import Layout from '../components/Layout'
+import Layout from '../components/PageLayout'
 
 const SPREADSHEET_QUERY = graphql`
   query eventsQuery {
