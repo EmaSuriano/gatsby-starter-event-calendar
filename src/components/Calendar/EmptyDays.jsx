@@ -8,7 +8,7 @@ const EmptyDays = ({ days }) => (
     {Array(days).fill(
       <CalendarBox
         background="empty-day-background"
-        border={{ color: 'empty-day-border-color' }}
+        border={{ color: 'calendar-border-color' }}
         square
       />,
     )}

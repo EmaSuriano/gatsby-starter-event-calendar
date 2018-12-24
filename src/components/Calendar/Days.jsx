@@ -32,7 +32,7 @@ const Day = ({ day, events, onClick }) => {
         key={day.getTime()}
         background={`${dayType}-background`}
         {...events.length && { onClick }}
-        border={{ color: `${dayType}-border-color` }}
+        border={{ color: 'calendar-border-color' }}
         pad="xsmall"
         square
       >
@@ -63,7 +63,7 @@ const Day = ({ day, events, onClick }) => {
         <CalendarBox
           key={day.getTime()}
           background={`${dayType}-background`}
-          border={{ color: `${dayType}-border-color` }}
+          border={{ color: 'calendar-border-color' }}
           pad="small"
           {...events.length && { onClick }}
           square

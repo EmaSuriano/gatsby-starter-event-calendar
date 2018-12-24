@@ -17,7 +17,7 @@ const Weekdays = () => {
     <Box direction="row" wrap>
       {weekdays.map(weekday => (
         <CalendarBox
-          border={{ color: 'weekdays-border-color' }}
+          border={{ color: 'calendar-border-color' }}
           background="weekdays-background"
           pad="small"
         >

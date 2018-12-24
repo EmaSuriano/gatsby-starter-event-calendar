@@ -47,8 +47,8 @@ class CalendarPage extends Component {
 
     return (
       <Layout>
-        <Hero>Hallo!</Hero>
-        <Box animation="fadeIn" pad="medium">
+        <Hero />
+        <Box animation="fadeIn" margin="medium" id="calendars">
           <ConfigContext.Consumer>
             {({ limitMonthInTheFuture }) => (
               <StaticQuery

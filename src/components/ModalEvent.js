@@ -52,6 +52,8 @@ const ModalEvent = ({ hideModal, currentDay, events }) => (
                 label="Link"
                 a11yTitle="event link"
                 target="_blank"
+                color="primary"
+                primary
               />
             </Box>
           </Box>
