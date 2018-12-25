@@ -19,7 +19,6 @@ const enhancedTheme = (baseTheme, customTheme) => {
     ...grommet.global.colors,
     ...flatTheme,
   }
-  console.log(colors)
 
   return {
     ...baseTheme,

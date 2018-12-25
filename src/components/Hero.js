@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-wrap-multilines */
+
 import React from 'react'
 import { Box, Heading, Button, Text, Image, ResponsiveContext } from 'grommet'
 import { graphql, StaticQuery } from 'gatsby'
