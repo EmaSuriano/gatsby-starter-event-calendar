@@ -17,6 +17,7 @@ const Hero = () => (
             height="100vh"
             justify="center"
             pad="medium"
+            animation="slideDown"
           >
             <StaticQuery
               query={graphql`

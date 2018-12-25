@@ -110,7 +110,7 @@ const Days = ({ days, events, month, showModal }) =>
 
       return (
         <Day
-          key={format(currentDay, 'DD-MM-YY')}
+          key={format(currentDay, 'DD-MM-YYYY')}
           day={currentDay}
           events={eventsOfTheDay}
           onClick={onClick}

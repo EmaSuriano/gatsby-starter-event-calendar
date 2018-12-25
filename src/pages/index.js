@@ -1,11 +1,8 @@
-import React, { Component } from 'react'
-import { StaticQuery, graphql } from 'gatsby'
-import { Box } from 'grommet'
+import React, { PureComponent } from 'react'
+import { graphql } from 'gatsby'
 import Calendar from '../components/Calendar'
 import ModalEvent from '../components/ModalEvent'
 import Hero from '../components/Hero'
-import ConfigContext from '../components/ConfigContext'
-import groupEventsByMonth from '../utils/groupEventsByMonth'
 import Layout from '../components/PageLayout'
 
 const SPREADSHEET_QUERY = graphql`
@@ -24,7 +21,7 @@ const SPREADSHEET_QUERY = graphql`
   }
 `
 
-class CalendarPage extends Component {
+class CalendarPage extends PureComponent {
   initialState = {
     currentDay: new Date(),
     eventsOfTheDay: [],
@@ -48,21 +45,7 @@ class CalendarPage extends Component {
     return (
       <Layout>
         <Hero />
-        <Box animation="fadeIn" margin="medium" id="calendars">
-          <ConfigContext.Consumer>
-            {({ limitMonthInTheFuture }) => (
-              <StaticQuery
-                query={SPREADSHEET_QUERY}
-                render={data => (
-                  <Calendar
-                    showModal={this.showModal}
-                    events={groupEventsByMonth(data, limitMonthInTheFuture)}
-                  />
-                )}
-              />
-            )}
-          </ConfigContext.Consumer>
-        </Box>
+        <Calendar showModal={this.showModal} query={SPREADSHEET_QUERY} />
         {showModal && (
           <ModalEvent
             hideModal={this.hideModal}

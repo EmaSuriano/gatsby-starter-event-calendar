@@ -20,6 +20,7 @@ const Weekdays = () => {
           border={{ color: 'calendar-weekdays-border' }}
           background="calendar-weekdays-background"
           pad="small"
+          key={weekday}
         >
           <Text textAlign="center" color="calendar-weekdays-text" truncate>
             {weekday}
