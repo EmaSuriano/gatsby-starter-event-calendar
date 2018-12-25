@@ -2,6 +2,7 @@
   "background": "white",
   "brand": "pink",
   "secondary": "violet",
+  "focus": "pink",
   "text": "black",
 
   "calendar": {

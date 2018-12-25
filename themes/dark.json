@@ -2,6 +2,7 @@
   "background": "black",
   "brand": "blueviolet",
   "secondary": "violet",
+  "focus": "blueviolet",
   "text": "white",
 
   "calendar": {
