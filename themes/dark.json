@@ -1,0 +1,41 @@
+{
+  "background": "black",
+  "brand": "blueviolet",
+  "secondary": "violet",
+  "text": "white",
+
+  "calendar": {
+    "today": {
+      "background": "violet",
+      "text": "blueviolet",
+      "border": "white"
+    },
+    "day": {
+      "background": "black",
+      "text": "white",
+      "border": "white"
+    },
+    "past": {
+      "background": "grey",
+      "text": "white",
+      "border": "white"
+    },
+    "empty": {
+      "background": "blueviolet",
+      "border": "white"
+    },
+    "weekdays": {
+      "background": "black",
+      "text": "white",
+      "border": "white"
+    },
+    "event": {
+      "background": "white",
+      "text": "black"
+    },
+    "modal": {
+      "text": "black",
+      "background": "white"
+    }
+  }
+}

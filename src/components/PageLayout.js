@@ -5,6 +5,7 @@ import { Grommet } from 'grommet'
 import { grommet } from 'grommet/themes'
 import Helmet from './Helmet'
 import ConfigContext from './ConfigContext'
+import flatObject from '../utils/flatObject'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -12,33 +13,40 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
+const enhancedTheme = (baseTheme, customTheme) => {
+  const flatTheme = flatObject(customTheme)
+  const colors = {
+    ...grommet.global.colors,
+    ...flatTheme,
+  }
+  console.log(colors)
+
+  return {
+    ...baseTheme,
+    global: {
+      ...baseTheme.global,
+      colors,
+    },
+  }
+}
+
 const Layout = ({ children }) => (
   <ConfigContext.Provider>
     <GlobalStyle />
     <ConfigContext.Consumer>
-      {appConfig => {
-        const { colors } = appConfig
-        const theme = {
-          ...grommet,
-          global: {
-            ...grommet.global,
-            colors,
-          },
-        }
-        return (
-          <Grommet
-            theme={theme}
-            full
-            css={css`
-              scroll-behavior: smooth;
-              overflow-y: scroll;
-            `}
-          >
-            <Helmet />
-            {children}
-          </Grommet>
-        )
-      }}
+      {appConfig => (
+        <Grommet
+          theme={enhancedTheme(grommet, appConfig.theme)}
+          full
+          css={css`
+            scroll-behavior: smooth;
+            overflow-y: scroll;
+          `}
+        >
+          <Helmet />
+          {children}
+        </Grommet>
+      )}
     </ConfigContext.Consumer>
   </ConfigContext.Provider>
 )

@@ -25,7 +25,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`,
+        path: `${__dirname}/media`,
       },
     },
     'gatsby-transformer-sharp',
@@ -36,10 +36,10 @@ module.exports = {
         name: 'gatsby-starter-event-calendar',
         short_name: 'starter-calendar',
         start_url: '/',
-        background_color: appConfig.colors.background,
-        theme_color: appConfig.colors.background,
+        background_color: appConfig.theme.background,
+        theme_color: appConfig.theme.brand,
         display: 'minimal-ui',
-        icon: 'src/images/calendar.png',
+        icon: 'media/icon.svg',
       },
     },
     {

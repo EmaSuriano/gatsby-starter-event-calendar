@@ -18,7 +18,7 @@ const Day = ({ day, events, onClick }) => {
   const isToday = isSameDay(day, today)
   const hasPast = isBefore(day, today)
 
-  const dayType = (isToday && 'today') || (hasPast && 'past-day') || 'day'
+  const dayType = (isToday && 'today') || (hasPast && 'past') || 'day'
 
   const eventsSection = (
     <Box direction="column" fill="horizontal">
@@ -30,9 +30,9 @@ const Day = ({ day, events, onClick }) => {
     <Query sizes={['small']} inverse>
       <CalendarBox
         key={day.getTime()}
-        background={`${dayType}-background`}
+        background={`calendar-${dayType}-background`}
         {...events.length && { onClick }}
-        border={{ color: 'calendar-border-color' }}
+        border={{ color: `calendar-${dayType}-border` }}
         pad="xsmall"
         square
       >
@@ -45,7 +45,7 @@ const Day = ({ day, events, onClick }) => {
             alignSelf="end"
           >
             <Text
-              color={`${dayType}-font-color`}
+              color={`calendar-${dayType}-text`}
               size="large"
               textAlign="end"
               css={css`
@@ -62,8 +62,8 @@ const Day = ({ day, events, onClick }) => {
       {(!hasPast || isToday) && (
         <CalendarBox
           key={day.getTime()}
-          background={`${dayType}-background`}
-          border={{ color: 'calendar-border-color' }}
+          background={`calendar-${dayType}-background`}
+          border={{ color: `calendar-${dayType}-border` }}
           pad="small"
           {...events.length && { onClick }}
           square
@@ -76,7 +76,7 @@ const Day = ({ day, events, onClick }) => {
               alignSelf="end"
             >
               <Text
-                color={`${dayType}-font-color`}
+                color={`calendar-${dayType}-text`}
                 size="large"
                 textAlign="start"
                 css={css`
@@ -86,7 +86,7 @@ const Day = ({ day, events, onClick }) => {
                 {format(day, 'DD')}
               </Text>
 
-              <Text color={`${dayType}-font-color`} size="small" truncate>
+              <Text color={`calendar-${dayType}-text`} size="small" truncate>
                 {format(day, 'dddd')}
               </Text>
             </Box>
