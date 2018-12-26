@@ -36,7 +36,6 @@ const Hero = () => (
                     width={size === 'small' ? 'xsmall' : 'small'}
                     height={size === 'small' ? 'xsmall' : 'small'}
                     margin={{ bottom: 'medium' }}
-                    responsive
                   >
                     <Image fit="contain" src={src} a11yTitle="logo" />
                   </Box>
