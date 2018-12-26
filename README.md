@@ -132,12 +132,12 @@ Inside the root folder there is a file called `appConfig.js`, which allow you to
 
 ```json
 {
-  "title": "Gatsby Starter Event Calendar", //title that will be displayed in Hero
-  "subTitle": "The easiest option to share events!", // subtitle that will displayed in Hero
-  "formLink": "https://goo.gl/forms/u00WBxeK1kQco0uQ2", // link with the form to submit more events
-  "maxAmountEvents": 2, // amount of events that will be render inside the Calendar view
-  "limitMonthInTheFuture": 2, // amount of calendar in the future the application will render
-  "theme": {} // Theme for the application, please check the next section for more information
+  "title": "Gatsby Starter Event Calendar",
+  "subTitle": "The easiest option to share events!",
+  "formLink": "https://goo.gl/forms/u00WBxeK1kQco0uQ2",
+  "maxAmountEvents": 2,
+  "limitMonthInTheFuture": 2,
+  "theme": {}
 }
 ```
 
