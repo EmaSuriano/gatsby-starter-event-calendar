@@ -20,13 +20,13 @@ const ModalEvent = ({ hideModal, currentDay, events }) => (
       <Text
         margin={{ left: 'small' }}
         color="calendar-modal-text"
-        a11yTitle="selected-day"
+        a11yTitle="Selected day"
       >
         <b>{format(new Date(currentDay), 'dddd D, MMMM')}</b>
       </Text>
       <Button
         icon={<FormClose />}
-        a11yTitle="close-modal-button"
+        a11yTitle="Close popup button"
         onClick={hideModal}
       />
     </Box>
@@ -44,12 +44,16 @@ const ModalEvent = ({ hideModal, currentDay, events }) => (
           fill="horizontal"
           background="calendar-modal-background"
         >
-          <Text a11yTitle="time" margin="small" color="calendar-modal-text">
+          <Text
+            a11yTitle="Event time"
+            margin="small"
+            color="calendar-modal-text"
+          >
             {format(new Date(event.date).setUTCMinutes(180), 'HH:mm')}
           </Text>
           <Box margin="small">
             <Text
-              a11yTitle="event name"
+              a11yTitle="Event name"
               weight="bold"
               size="large"
               color="calendar-modal-text"
@@ -58,7 +62,7 @@ const ModalEvent = ({ hideModal, currentDay, events }) => (
             </Text>
 
             {event.place && (
-              <Text a11yTitle="event place" color="calendar-modal-text">
+              <Text a11yTitle="Event place" color="calendar-modal-text">
                 {event.place}
               </Text>
             )}
@@ -67,7 +71,7 @@ const ModalEvent = ({ hideModal, currentDay, events }) => (
               <Button
                 href={event.eventLink}
                 label="Link"
-                a11yTitle="event link"
+                a11yTitle="Event link"
                 target="_blank"
                 primary
               />

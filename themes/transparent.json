@@ -9,26 +9,26 @@
     "today": {
       "background": "pink",
       "text": "violet",
-      "border": "transparent"
+      "border": "violet"
     },
     "day": {
       "background": "white",
       "text": "black",
-      "border": "black"
+      "border": "transparent"
     },
     "past": {
       "background": "transparent",
       "text": "black",
-      "border": "black"
+      "border": "transparent"
     },
     "empty": {
       "background": "transparent",
-      "border": "black"
+      "border": "transparent"
     },
     "weekdays": {
       "background": "white",
       "text": "black",
-      "border": "black"
+      "border": "transparent"
     },
     "event": {
       "background": "violet",

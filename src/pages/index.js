@@ -1,10 +1,14 @@
 import React, { PureComponent } from 'react'
-import { graphql } from 'gatsby'
+import { Box } from 'grommet'
+import { StaticQuery, graphql } from 'gatsby'
 import Calendar from '../components/Calendar'
 import ModalEvent from '../components/ModalEvent'
 import Hero from '../components/Hero'
 import Layout from '../components/PageLayout'
+import groupEventsByMonth from '../utils/groupEventsByMonth'
+import ConfigContext from '../components/ConfigContext'
 
+// override this query with your own questions!
 const SPREADSHEET_QUERY = graphql`
   query eventsQuery {
     allGoogleSheetEventsRow {
@@ -45,7 +49,22 @@ class CalendarPage extends PureComponent {
     return (
       <Layout>
         <Hero />
-        <Calendar showModal={this.showModal} query={SPREADSHEET_QUERY} />
+        <Box id="calendars" animation="fadeIn" margin="medium">
+          <ConfigContext.Consumer>
+            {({ limitMonthInTheFuture }) => (
+              <StaticQuery
+                query={SPREADSHEET_QUERY}
+                render={data => (
+                  <Calendar
+                    showModal={this.showModal}
+                    events={groupEventsByMonth(data, limitMonthInTheFuture)}
+                  />
+                )}
+              />
+            )}
+          </ConfigContext.Consumer>
+        </Box>
+
         {showModal && (
           <ModalEvent
             hideModal={this.hideModal}

@@ -22,7 +22,12 @@ const Weekdays = () => {
           pad="small"
           key={weekday}
         >
-          <Text textAlign="center" color="calendar-weekdays-text" truncate>
+          <Text
+            textAlign="center"
+            color="calendar-weekdays-text"
+            truncate
+            a11yTitle={weekday}
+          >
             {weekday}
           </Text>
         </CalendarBox>

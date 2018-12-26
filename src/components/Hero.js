@@ -38,15 +38,21 @@ const Hero = () => (
                     margin={{ bottom: 'medium' }}
                     responsive
                   >
-                    <Image fit="contain" src={src} />
+                    <Image fit="contain" src={src} a11yTitle="logo" />
                   </Box>
                 )
               }}
             />
-            <Heading size="large" align="center">
+
+            <Heading size="large" align="center" a11yTitle="Application title">
               {appConfig.title}
             </Heading>
-            <Heading align="center">{appConfig.subTitle}</Heading>
+
+            {appConfig.subTitle && (
+              <Heading align="center" a11yTitle="Application sub title">
+                {appConfig.subTitle}
+              </Heading>
+            )}
 
             <Box
               direction={size === 'small' ? 'column' : 'row'}

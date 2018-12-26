@@ -31,9 +31,9 @@ const Day = ({ day, events, onClick }) => {
       <CalendarBox
         key={day.getTime()}
         background={`calendar-${dayType}-background`}
-        {...events.length && { onClick }}
         border={{ color: `calendar-${dayType}-border` }}
         pad="xsmall"
+        {...events.length && { onClick }}
         square
       >
         <Box direction="column" fill="vertical">
@@ -47,6 +47,7 @@ const Day = ({ day, events, onClick }) => {
             <Text
               color={`calendar-${dayType}-text`}
               size="large"
+              a11yTitle="Day number"
               textAlign="end"
               css={css`
                 text-decoration: ${hasPast && !isToday && 'line-through'};
@@ -82,11 +83,17 @@ const Day = ({ day, events, onClick }) => {
                 css={css`
                   text-decoration: ${getStrike(day, today) && 'line-through'};
                 `}
+                a11yTitle="Day number"
               >
                 {format(day, 'DD')}
               </Text>
 
-              <Text color={`calendar-${dayType}-text`} size="small" truncate>
+              <Text
+                color={`calendar-${dayType}-text`}
+                size="small"
+                a11yTitle="Day"
+                truncate
+              >
                 {format(day, 'dddd')}
               </Text>
             </Box>

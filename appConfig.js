@@ -6,6 +6,5 @@ module.exports = {
   formLink: 'https://goo.gl/forms/u00WBxeK1kQco0uQ2',
   maxAmountEvents: 2,
   limitMonthInTheFuture: 2,
-
   theme,
 }
