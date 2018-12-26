@@ -1,5 +1,7 @@
 # Gatsby Starter: Event Calendar 📅
 
+![Home page](./media/home.png)
+
 [![Greenkeeper badge](https://badges.greenkeeper.io/EmaSuriano/gatsby-starter-mate.svg)](https://greenkeeper.io/)
 [![Travis badge](https://api.travis-ci.org/EmaSuriano/gatsby-starter-mate.svg)](https://travis-ci.org/EmaSuriano/gatsby-starter-mate)
 [![eslint](https://img.shields.io/badge/eslint-enabled-green.svg)](https://eslint.org/)
@@ -9,7 +11,9 @@
 
 The target audience are Event Organizers or Meetups 😄
 
-### [Demo Website](https://gatsby-starter-event-calendar.netlify.com/)
+### [Medium Story ✍️](https://medium.com/p/5989b283c937/)
+
+### [Demo 🌵](https://gatsby-starter-event-calendar.netlify.com/)
 
 ## Why? 🤔
 
@@ -62,6 +66,11 @@ PRIVATE_KEY=// your private_key
 PRIVATE_KEY_ID=// your private_key_id
 PROJECT_ID=// your project_id
 ```
+
+Then go to `gatsby-config.js` and look for the options of `gatsby-source-google-sheets`, and change the values of:
+
+- `spreadsheetId`: you can find this value inside the URL of the spreadsheet. `https://docs.google.com/spreadsheets/d/[spreadsheetId]`
+- `worksheetTitle`: this is the name of the sheet from which you want to read the information.
 
 Now you are ready to start the project, fetching all the events inside the Spreadsheet and displaying Calendars with them!
 
