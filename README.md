@@ -13,7 +13,7 @@ The target audience are Event Organizers or Meetups 😄
 
 ### [Medium Story ✍️](https://medium.com/p/5989b283c937/)
 
-### [Demo 🌵](https://gatsby-starter-event-calendar.netlify.com/)
+### [Demo 🎉](https://gatsby-starter-event-calendar.netlify.com/)
 
 ## Why? 🤔
 
@@ -261,6 +261,18 @@ The structure for the main page is the following:
 
 `ModalEvent` is the popup that is going to be showed when someone click on a day with events, and it renders the information of all the events for that day.
 
+## Automatic deployment on new Event ⚡️
+
+As Gatsby it's a static website generator we need to make a new deploy to get the new data from the Spreadsheet. This can be seen as a drawback, but it's of the key why Gatsby is so fast.
+
+When it comes to deployment there are many alternatives, like Github Pages, Netlify, Heroku and many many more. Independently of which one you choose, none of them has the ability to _watch_ for changes inside our Spreadsheet, and they shouldn't because it's not their job.
+
+To attack this problem I use an application called [Zapier](https://zapier.com/). The ide behind it's creating flows of action, defining a Trigger (something that need to happen) and some actions (what should happened after).
+
+For this project, the rule is: If someone add/edit/remove a new event, trigger a new deploy. And this it looks in Zapier 😄
+
+![Zapier screenshot](./media/zapier-screenshot.png)
+
 ## Contributing 💪
 
 I came with the idea of creating this starter after making a page for a friend with the same concept but it was totally attached to only one spreadshet and lots of hardcoded information.
@@ -272,3 +284,5 @@ I'm totally for new PRs with bug fixes, change in Documentation, and new feature
 ## License 📝
 
 MIT.
+
+<div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
