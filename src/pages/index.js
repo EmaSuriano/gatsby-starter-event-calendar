@@ -1,13 +1,14 @@
-import React, { Component } from 'react'
-import { StaticQuery, graphql } from 'gatsby'
+import React, { PureComponent } from 'react'
 import { Box } from 'grommet'
-import Layout from '../components/Layout'
+import { StaticQuery, graphql } from 'gatsby'
 import Calendar from '../components/Calendar'
 import ModalEvent from '../components/ModalEvent'
 import Hero from '../components/Hero'
-import ConfigContext from '../components/ConfigContext'
+import Layout from '../components/PageLayout'
 import groupEventsByMonth from '../utils/groupEventsByMonth'
+import ConfigContext from '../components/ConfigContext'
 
+// override this query with your own questions!
 const SPREADSHEET_QUERY = graphql`
   query eventsQuery {
     allGoogleSheetEventsRow {
@@ -24,7 +25,7 @@ const SPREADSHEET_QUERY = graphql`
   }
 `
 
-class CalendarPage extends Component {
+class CalendarPage extends PureComponent {
   initialState = {
     currentDay: new Date(),
     eventsOfTheDay: [],
@@ -46,33 +47,32 @@ class CalendarPage extends Component {
     const { currentDay, eventsOfTheDay, showModal } = this.state
 
     return (
-      <ConfigContext.Provider>
-        <Layout>
-          <Hero>Hallo!</Hero>
-          <Box animation="fadeIn" pad="medium">
-            <ConfigContext.Consumer>
-              {({ limitMonthInTheFuture }) => (
-                <StaticQuery
-                  query={SPREADSHEET_QUERY}
-                  render={data => (
-                    <Calendar
-                      showModal={this.showModal}
-                      events={groupEventsByMonth(data, limitMonthInTheFuture)}
-                    />
-                  )}
-                />
-              )}
-            </ConfigContext.Consumer>
-          </Box>
-          {showModal && (
-            <ModalEvent
-              hideModal={this.hideModal}
-              currentDay={currentDay}
-              events={eventsOfTheDay}
-            />
-          )}
-        </Layout>
-      </ConfigContext.Provider>
+      <Layout>
+        <Hero />
+        <Box id="calendars" animation="fadeIn" margin="medium">
+          <ConfigContext.Consumer>
+            {({ limitMonthInTheFuture }) => (
+              <StaticQuery
+                query={SPREADSHEET_QUERY}
+                render={data => (
+                  <Calendar
+                    showModal={this.showModal}
+                    events={groupEventsByMonth(data, limitMonthInTheFuture)}
+                  />
+                )}
+              />
+            )}
+          </ConfigContext.Consumer>
+        </Box>
+
+        {showModal && (
+          <ModalEvent
+            hideModal={this.hideModal}
+            currentDay={currentDay}
+            events={eventsOfTheDay}
+          />
+        )}
+      </Layout>
     )
   }
 }

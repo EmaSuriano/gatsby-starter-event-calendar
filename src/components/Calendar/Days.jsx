@@ -18,7 +18,7 @@ const Day = ({ day, events, onClick }) => {
   const isToday = isSameDay(day, today)
   const hasPast = isBefore(day, today)
 
-  const dayType = (isToday && 'today') || (hasPast && 'past-day') || 'day'
+  const dayType = (isToday && 'today') || (hasPast && 'past') || 'day'
 
   const eventsSection = (
     <Box direction="column" fill="horizontal">
@@ -30,10 +30,10 @@ const Day = ({ day, events, onClick }) => {
     <Query sizes={['small']} inverse>
       <CalendarBox
         key={day.getTime()}
-        background={`${dayType}-background`}
-        {...events.length && { onClick }}
-        border={{ color: `${dayType}-border-color` }}
+        background={`calendar-${dayType}-background`}
+        border={{ color: `calendar-${dayType}-border` }}
         pad="xsmall"
+        {...events.length && { onClick }}
         square
       >
         <Box direction="column" fill="vertical">
@@ -45,8 +45,9 @@ const Day = ({ day, events, onClick }) => {
             alignSelf="end"
           >
             <Text
-              color={`${dayType}-font-color`}
+              color={`calendar-${dayType}-text`}
               size="large"
+              a11yTitle="Day number"
               textAlign="end"
               css={css`
                 text-decoration: ${hasPast && !isToday && 'line-through'};
@@ -62,8 +63,8 @@ const Day = ({ day, events, onClick }) => {
       {(!hasPast || isToday) && (
         <CalendarBox
           key={day.getTime()}
-          background={`${dayType}-background`}
-          border={{ color: `${dayType}-border-color` }}
+          background={`calendar-${dayType}-background`}
+          border={{ color: `calendar-${dayType}-border` }}
           pad="small"
           {...events.length && { onClick }}
           square
@@ -76,17 +77,23 @@ const Day = ({ day, events, onClick }) => {
               alignSelf="end"
             >
               <Text
-                color={`${dayType}-font-color`}
+                color={`calendar-${dayType}-text`}
                 size="large"
                 textAlign="start"
                 css={css`
                   text-decoration: ${getStrike(day, today) && 'line-through'};
                 `}
+                a11yTitle="Day number"
               >
                 {format(day, 'DD')}
               </Text>
 
-              <Text color={`${dayType}-font-color`} size="small" truncate>
+              <Text
+                color={`calendar-${dayType}-text`}
+                size="small"
+                a11yTitle="Day"
+                truncate
+              >
                 {format(day, 'dddd')}
               </Text>
             </Box>
@@ -110,7 +117,7 @@ const Days = ({ days, events, month, showModal }) =>
 
       return (
         <Day
-          key={format(currentDay, 'DD-MM-YY')}
+          key={format(currentDay, 'DD-MM-YYYY')}
           day={currentDay}
           events={eventsOfTheDay}
           onClick={onClick}

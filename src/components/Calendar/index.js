@@ -13,7 +13,7 @@ const Calendar = ({ showModal, events }) =>
 
 Calendar.propTypes = {
   showModal: PropTypes.func.isRequired,
-  events: PropTypes.array,
+  query: PropTypes.string,
 }
 
 export default Calendar

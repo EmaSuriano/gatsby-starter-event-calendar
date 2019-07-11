@@ -1,0 +1,42 @@
+{
+  "background": "white",
+  "brand": "pink",
+  "secondary": "violet",
+  "focus": "pink",
+  "text": "black",
+
+  "calendar": {
+    "today": {
+      "background": "pink",
+      "text": "violet",
+      "border": "violet"
+    },
+    "day": {
+      "background": "white",
+      "text": "black",
+      "border": "transparent"
+    },
+    "past": {
+      "background": "transparent",
+      "text": "black",
+      "border": "transparent"
+    },
+    "empty": {
+      "background": "transparent",
+      "border": "transparent"
+    },
+    "weekdays": {
+      "background": "white",
+      "text": "black",
+      "border": "transparent"
+    },
+    "event": {
+      "background": "violet",
+      "text": "black"
+    },
+    "modal": {
+      "text": "black",
+      "background": "white"
+    }
+  }
+}

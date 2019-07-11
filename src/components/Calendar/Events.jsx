@@ -21,7 +21,7 @@ const Events = ({ events }) =>
             >
               {events.slice(0, maxAmountEvents + 1).map((event, i) => (
                 <Box tag="li" key={event.id}>
-                  {i < maxAmountEvents && <Event>{event.eventName}</Event>}
+                  {i < maxAmountEvents && <Event name={event.eventName} />}
                   {i === maxAmountEvents && (
                     <Text size="small" truncate>
                       {`And ${events.length - maxAmountEvents} more ...`}
