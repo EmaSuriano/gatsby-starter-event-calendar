@@ -14,8 +14,6 @@ const buildCredentials = ({ PROJECT_ID, PRIVATE_KEY, PRIVATE_KEY_ID }) => ({
   client_x509_cert_url: `https://www.googleapis.com/robot/v1/metadata/x509/${PROJECT_ID}%40appspot.gserviceaccount.com`,
 })
 
-console.log(buildCredentials(process.env))
-
 module.exports = {
   siteMetadata: {
     title: 'Gatsby Default Starter',
@@ -47,7 +45,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-google-sheets',
       options: {
-        spreadsheetId: '1VbKFMnTt-r_cW_wq3fQCwbbmtic3qyq1-FYtchNYLo4',
+        spreadsheetId: '1e6mNWZZLuBBFk2c-zGRSSh8g5mqoQUPbW78NmA_EI88',
         worksheetTitle: 'Events',
         credentials: buildCredentials(process.env),
       },

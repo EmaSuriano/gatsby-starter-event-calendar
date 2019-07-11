@@ -7,7 +7,7 @@
     "babel-plugin-styled-components": "^1.9.1",
     "date-fns": "^1.29.0",
     "dotenv": "^6.2.0",
-    "gatsby": "^2.0.19",
+    "gatsby": "^2.13.13",
     "gatsby-image": "^2.0.15",
     "gatsby-plugin-manifest": "^2.0.5",
     "gatsby-plugin-offline": "^2.0.11",
@@ -45,10 +45,10 @@
   ],
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "develop": "gatsby clean && gatsby develop",
     "start": "npm run develop",
-    "format": "prettier --write \"src/**/*.js\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint src",
+    "format": "prettier --write \"src/**/*.js\""
   },
   "repository": {
     "type": "git",

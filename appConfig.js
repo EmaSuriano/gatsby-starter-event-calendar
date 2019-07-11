@@ -1,7 +1,7 @@
 module.exports = {
   title: 'Gatsby Starter Event Calendar',
   subTitle: 'Easiest option to share events with people!',
-  formLink: 'https://goo.gl/forms/u00WBxeK1kQco0uQ2',
+  formLink: 'https://forms.gle/5Kv3XKJBA5g5FWRC7',
   maxAmountEvents: 2,
   limitMonthInTheFuture: 2,
   colors: {
