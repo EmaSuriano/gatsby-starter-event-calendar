@@ -7,7 +7,7 @@
 
   "calendar": {
     "today": {
-      "background": "#9af1da",
+      "background": "#9af1daDD",
       "text": "white",
       "border": "white"
     },
@@ -26,11 +26,11 @@
       "border": "white"
     },
     "weekdays": {
-      "background": "transparent",
+      "background": "#ffffff33",
       "border": "white"
     },
     "event": {
-      "background": "#1fe5bd",
+      "background": "#1fe5bdDD",
       "text": "white"
     },
     "modal": {

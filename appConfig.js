@@ -1,10 +1,10 @@
-const theme = require('./themes/main.json')
+const theme = require('./themes/main.json');
 
 module.exports = {
   title: 'Gatsby Starter Event Calendar',
   subTitle: 'The easiest option to share events!',
-  formLink: 'https://goo.gl/forms/u00WBxeK1kQco0uQ2',
+  formLink: 'https://forms.gle/5Kv3XKJBA5g5FWRC7',
   maxAmountEvents: 2,
   limitMonthInTheFuture: 2,
   theme,
-}
+};

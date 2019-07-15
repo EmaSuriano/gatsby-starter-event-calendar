@@ -45,7 +45,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-google-sheets',
       options: {
-        spreadsheetId: '1VbKFMnTt-r_cW_wq3fQCwbbmtic3qyq1-FYtchNYLo4',
+        spreadsheetId: '1e6mNWZZLuBBFk2c-zGRSSh8g5mqoQUPbW78NmA_EI88',
         worksheetTitle: 'Events',
         credentials: buildCredentials(process.env),
       },
