@@ -26,7 +26,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
-    "shortid": "^2.2.14",
+    "shortid": "^2.2.15",
     "styled-components": "^4.3.2",
     "uuid": "^3.3.2"
   },
