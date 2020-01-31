@@ -2,10 +2,10 @@
 
 ![Homepage](./media/home.png)
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/EmaSuriano/gatsby-starter-mate.svg)](https://greenkeeper.io/)
 [![Travis badge](https://api.travis-ci.org/EmaSuriano/gatsby-starter-mate.svg)](https://travis-ci.org/EmaSuriano/gatsby-starter-mate)
 [![eslint](https://img.shields.io/badge/eslint-enabled-green.svg)](https://eslint.org/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7c0d45fd-b587-4e8a-afc8-f8da150e0663/deploy-status)](https://app.netlify.com/sites/gatsby-starter-event-calendar/deploys)
 
 > A calendar starter integrated with Google Spreadsheet.
 
