@@ -65,6 +65,12 @@ class CalendarPage extends PureComponent {
           </ConfigContext.Consumer>
         </Box>
 
+        <Box>
+          <a href="https://www.netlify.com">
+            <img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg" />
+          </a>
+        </Box>
+
         {showModal && (
           <ModalEvent
             hideModal={this.hideModal}
