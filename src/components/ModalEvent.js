@@ -61,6 +61,12 @@ const ModalEvent = ({ hideModal, currentDay, events }) => (
               {event.eventName}
             </Text>
 
+            {event.place && (
+              <Text a11yTitle="Event place" color="calendar-modal-text">
+                {event.place}
+              </Text>
+            )}
+
             <Box margin={{ top: 'medium' }} width="xsmall">
               <Button
                 href={event.eventLink}

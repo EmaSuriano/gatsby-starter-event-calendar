@@ -101,6 +101,7 @@ const SPREADSHEET_QUERY = graphql`
           eventName: whatisthename
           date: when
           eventLink: linktotheevent
+          place: where
         }
       }
     }
@@ -121,9 +122,10 @@ const SPREADSHEET_QUERY = graphql`
       edges {
         node {
           id
-          eventName: nameoftheevent
+          eventName: whatisthename
           date: when
           eventLink: linktotheevent
+          place: where
         }
       }
     }

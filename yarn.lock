@@ -10096,6 +10096,11 @@ react-fast-compare@^2.0.2:
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
   integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
 
+react-github-corner@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-github-corner/-/react-github-corner-2.3.0.tgz#73ab17324b670c9cd955567b09663d385cfb05ef"
+  integrity sha512-yVh8wtAfVA5CQYn8ygyxtsuCMoyiSEBVnzQJ3ynyWxZ1BzT2MHop4baZn/PnUnU9Yh8mwhLS5Y1RVxM5zNotGw==
+
 react-helmet@^5.2.1:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/react-helmet/-/react-helmet-5.2.1.tgz#16a7192fdd09951f8e0fe22ffccbf9bb3e591ffa"

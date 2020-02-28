@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react'
-import { Box } from 'grommet'
+import { Box, Text, Anchor } from 'grommet'
 import { StaticQuery, graphql } from 'gatsby'
+import styled from 'styled-components'
 import Calendar from '../components/Calendar'
+import GithubCorner from 'react-github-corner'
 import ModalEvent from '../components/ModalEvent'
 import Hero from '../components/Hero'
 import Layout from '../components/PageLayout'
@@ -18,11 +20,21 @@ const SPREADSHEET_QUERY = graphql`
           eventName: whatisthename
           date: when
           eventLink: linktotheevent
+          place: where
         }
       }
     }
   }
 `
+
+const StyledGithubCorner = styled(GithubCorner).attrs(props => {
+  console.log(props)
+
+  return {
+    octoColor: props.theme.global.colors.text,
+    bannerColor: props.theme.global.colors.brand,
+  }
+})``
 
 class CalendarPage extends PureComponent {
   initialState = {
@@ -48,7 +60,7 @@ class CalendarPage extends PureComponent {
     return (
       <Layout>
         <Hero />
-        <Box id="calendars" animation="fadeIn" margin="medium">
+        <Box id="calendars" animation="fadeIn">
           <ConfigContext.Consumer>
             {({ limitMonthInTheFuture }) => (
               <StaticQuery
@@ -64,11 +76,15 @@ class CalendarPage extends PureComponent {
           </ConfigContext.Consumer>
         </Box>
 
-        <Box>
-          <a href="https://www.netlify.com">
-            <img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg" />
-          </a>
-        </Box>
+        <Text margin="medium">
+          This site is powered by &nbsp;
+          <Anchor href="https://www.netlify.com/">
+            <b>Netlify</b>
+          </Anchor>
+          &nbsp; ❤
+        </Text>
+
+        <StyledGithubCorner href="https://github.com/EmaSuriano/gatsby-starter-event-calendar" />
 
         {showModal && (
           <ModalEvent
