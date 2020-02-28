@@ -33,6 +33,10 @@
       "background": "#1fe5bdDD",
       "text": "white"
     },
+    "past-event": {
+      "background": "grey",
+      "text": "white"
+    },
     "modal": {
       "text": "black",
       "background": "white"

@@ -7,7 +7,7 @@ const CalendarBox = ({ square, children, onClick, ...rest }) => (
     {size => (
       <Box
         onClick={onClick}
-        height={square && size !== 'small' && '8rem'}
+        height={square && size !== 'small' ? '8rem' : 'inherit'}
         width="calc(100% / 7)"
         fill={size === 'small' && 'horizontal'}
         css={css`

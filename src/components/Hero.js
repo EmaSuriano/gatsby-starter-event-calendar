@@ -4,6 +4,11 @@ import React from 'react'
 import { Box, Heading, Button, Text, Image, ResponsiveContext } from 'grommet'
 import { graphql, StaticQuery } from 'gatsby'
 import ConfigContext from './ConfigContext'
+import styled from 'styled-components'
+
+const HeroButton = styled(Button)`
+  padding: 20px;
+`
 
 const Hero = () => (
   <ConfigContext.Consumer>
@@ -58,23 +63,15 @@ const Hero = () => (
               margin={{ top: 'large' }}
               gap="medium"
             >
-              <Button
+              <HeroButton
                 href="#calendars"
-                label={
-                  <Text size="large" margin="small">
-                    See all the events
-                  </Text>
-                }
+                label="See all the events"
                 a11yTitle="See all the events"
                 primary
               />
-              <Button
+              <HeroButton
                 href={appConfig.formLink}
-                label={
-                  <Text size="large" margin="small">
-                    Add your event!
-                  </Text>
-                }
+                label="Add your event!"
                 a11yTitle="Click to add your event"
                 color="secondary"
                 target="_blank"

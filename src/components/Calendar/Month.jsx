@@ -21,7 +21,7 @@ const Month = ({ monthlyCalendar, showModal }) => {
   const emptyDaysAtEnd = 7 - ((currentMonthIsoDay + currentMonthDays) % 7)
 
   return (
-    <Box margin={{ bottom: 'medium' }}>
+    <Box margin="medium">
       <Heading a11yTitle={`Month of ${format(currentMonth, 'MMMM YYYY')}`}>
         <b>{`${format(currentMonth, 'MMMM')} `}</b>
         {format(currentMonth, 'YYYY')}

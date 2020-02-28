@@ -34,6 +34,10 @@
       "background": "violet",
       "text": "black"
     },
+    "past-event": {
+      "background": "transparent",
+      "text": "white"
+    },
     "modal": {
       "text": "black",
       "background": "white"

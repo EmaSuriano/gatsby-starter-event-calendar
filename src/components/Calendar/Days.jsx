@@ -22,7 +22,7 @@ const Day = ({ day, events, onClick }) => {
 
   const eventsSection = (
     <Box direction="column" fill="horizontal">
-      <Events events={events} />
+      <Events events={events} hasPast={hasPast && !isToday} />
     </Box>
   )
 
