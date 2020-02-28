@@ -5,5 +5,4 @@ module.exports = {
     'react/require-default-props': 'off',
     'react/forbid-prop-types': 'off',
   },
-  parser: 'babel-eslint',
 }

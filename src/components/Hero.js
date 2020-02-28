@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-wrap-multilines */
 
 import React from 'react'
-import { Box, Heading, Button, Text, Image, ResponsiveContext } from 'grommet'
+import { Box, Heading, Button, Image, ResponsiveContext } from 'grommet'
 import { graphql, StaticQuery } from 'gatsby'
-import ConfigContext from './ConfigContext'
 import styled from 'styled-components'
+import ConfigContext from './ConfigContext'
 
 const HeroButton = styled(Button)`
   padding: 20px;

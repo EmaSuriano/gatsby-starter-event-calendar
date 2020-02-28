@@ -1,27 +1,22 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { Box } from 'grommet'
 import PropTypes from 'prop-types'
 
- class Hover extends Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-  }
+const Hover = ({ children }) => {
+  const [hover, setHover] = useState(false)
 
-  state = {
-    hover: false,
-  }
+  return (
+    <Box
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
+      {children({ hover })}
+    </Box>
+  )
+}
 
-  onHover = hover => () => this.setState({ hover })
-
-  render() {
-    const { children } = this.props
-    const { hover } = this.state
-    return (
-      <Box onMouseEnter={this.onHover(true)} onMouseLeave={this.onHover(false)}>
-        {children({ hover })}
-      </Box>
-    )
-  }
+Hover.propTypes = {
+  children: PropTypes.node,
 }
 
 export default Hover

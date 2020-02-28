@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react'
 import { Box, Text, Anchor } from 'grommet'
 import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
-import Calendar from '../components/Calendar'
 import GithubCorner from 'react-github-corner'
+import Calendar from '../components/Calendar'
 import ModalEvent from '../components/ModalEvent'
 import Hero from '../components/Hero'
 import Layout from '../components/PageLayout'
@@ -28,31 +28,37 @@ const SPREADSHEET_QUERY = graphql`
 `
 
 const StyledGithubCorner = styled(GithubCorner).attrs(props => {
-  console.log(props)
-
   return {
     octoColor: props.theme.global.colors.text,
     bannerColor: props.theme.global.colors.brand,
   }
 })``
 
+const INITIAL_STATE = {
+  currentDay: new Date(),
+  eventsOfTheDay: [],
+  showModal: false,
+}
+
 class CalendarPage extends PureComponent {
-  initialState = {
-    currentDay: new Date(),
-    eventsOfTheDay: [],
-    showModal: false,
+  constructor(props) {
+    super(props)
+    this.state = INITIAL_STATE
+    this.hideModal = this.hideModal.bind(this)
+    this.showModal = this.showModal.bind(this)
   }
 
-  state = this.initialState
+  hideModal() {
+    this.setState(INITIAL_STATE)
+  }
 
-  hideModal = () => this.setState(this.initialState)
-
-  showModal = (eventsOfTheDay, currentDay) =>
+  showModal(eventsOfTheDay, currentDay) {
     this.setState({
       currentDay,
       eventsOfTheDay,
       showModal: true,
     })
+  }
 
   render() {
     const { currentDay, eventsOfTheDay, showModal } = this.state
