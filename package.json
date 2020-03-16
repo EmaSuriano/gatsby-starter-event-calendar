@@ -12,7 +12,7 @@
     "gatsby-plugin-manifest": "^2.2.47",
     "gatsby-plugin-offline": "^2.2.4",
     "gatsby-plugin-react-helmet": "^3.1.23",
-    "gatsby-plugin-react-svg": "^2.1.1",
+    "gatsby-plugin-react-svg": "^3.0.0",
     "gatsby-plugin-sharp": "^2.4.12",
     "gatsby-plugin-styled-components": "^3.1.20",
     "gatsby-source-filesystem": "^2.1.55",
