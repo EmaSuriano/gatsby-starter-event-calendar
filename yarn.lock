@@ -5689,7 +5689,7 @@ gatsby-cli@^2.11.3:
     ink "^2.7.1"
     ink-spinner "^3.0.1"
 
-gatsby-core-utils@^1.0.33, gatsby-core-utils@^1.1.0, gatsby-core-utils@^1.1.1:
+gatsby-core-utils@^1.0.33, gatsby-core-utils@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-1.1.1.tgz#3ebe4c6fe277ef8d91e1b708bd65ef4f7dc0928b"
   integrity sha512-EboPcBx37YQVUKN9JH753S54nDxjRmOefbR0i08KTmaVgQ1lZnDXJr8JfrImmMqupZlOkPQX1mWlXfp+r1jGhA==
@@ -6477,10 +6477,10 @@ grommet-styles@^0.2.0:
   resolved "https://registry.yarnpkg.com/grommet-styles/-/grommet-styles-0.2.0.tgz#b2eac2b7e2747cb523434d21728ce5234f8ce4f4"
   integrity sha512-0OMSYuGeyifYKpg4Gv2HzL8rUdd0ddnJ5LbCBKgDuloC71XIwr9g/Fxa6rs737MbPV7OZ4pEm4wvrjH4epzf1A==
 
-grommet@^2.11.3:
-  version "2.11.3"
-  resolved "https://registry.yarnpkg.com/grommet/-/grommet-2.11.3.tgz#7c685b4e01d53839d92243b2c870d44c62852013"
-  integrity sha512-3DCq9KXbJFaORFcAUOxU5HNhC79p8+k8ngNyrGk8F0dvkecLQJJajxU9KyJBbjO15xal+qF3WTg4UgKXM+b9Mw==
+grommet@^2.12.0:
+  version "2.12.0"
+  resolved "https://registry.yarnpkg.com/grommet/-/grommet-2.12.0.tgz#36513251d628f79d7991b639e4b3a2e5ec6756c1"
+  integrity sha512-/RExZBlDXY75Jg9VOhvDbZuYBXHZ+cQi5H2sWKTHbaLkYc7bixjOu1qi2BHdfRLMvJJJFuklZTVBSn1TlbM3bw==
   dependencies:
     css "^2.2.3"
     grommet-icons "^4.2.0"
