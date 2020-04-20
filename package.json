@@ -15,7 +15,7 @@
     "gatsby-plugin-react-svg": "^3.0.0",
     "gatsby-plugin-sharp": "^2.4.12",
     "gatsby-plugin-styled-components": "^3.2.1",
-    "gatsby-source-filesystem": "^2.2.2",
+    "gatsby-source-filesystem": "^2.2.4",
     "gatsby-source-google-sheets": "^1.1.1",
     "gatsby-transformer-sharp": "^2.4.4",
     "grommet": "^2.12.0",
