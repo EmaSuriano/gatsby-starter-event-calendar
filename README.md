@@ -7,7 +7,7 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/7c0d45fd-b587-4e8a-afc8-f8da150e0663/deploy-status)](https://app.netlify.com/sites/gatsby-starter-event-calendar/deploys)
 
-> A calendar starter integrated with Google Spreadsheet.
+> A customisable calendar event starter for Gatsby integrated with Google Spreadsheet.
 
 The target audiences are Event Organizers or Meetups 😄
 
