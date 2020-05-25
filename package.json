@@ -8,7 +8,7 @@
     "date-fns": "^1.30.1",
     "dotenv": "^8.0.0",
     "gatsby": "^2.21.33",
-    "gatsby-image": "^2.4.3",
+    "gatsby-image": "^2.4.5",
     "gatsby-plugin-manifest": "^2.2.47",
     "gatsby-plugin-offline": "^3.2.2",
     "gatsby-plugin-react-helmet": "^3.3.1",
