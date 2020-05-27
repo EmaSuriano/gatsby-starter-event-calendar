@@ -39,6 +39,7 @@
     },
     "modal": {
       "text": "black",
+      "separator": "#666",
       "background": "white"
     }
   }

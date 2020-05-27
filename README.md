@@ -27,6 +27,8 @@ It groups all the events submitted via Google Form, which are stored inside a Go
 - [Grommet](http://grommet.io): A react-based framework that provides accessibility, modularity, responsiveness, and Theming in a tidy package
 - Dynamic content from [Google Spreadsheet](https://www.google.com/sheets/about/)
 - Offline support
+- Typescript
+- React Hooks
 - A11y support: content and navigation ready for screen readers.
 - PWA ready
 - SEO
@@ -90,7 +92,7 @@ Graphql queries have a concept called `alias` that allows renaming a variable th
 This an example of my `query`:
 
 ```javascript
-import { graphql } from 'gatsby'
+import { graphql } from 'gatsby';
 
 const SPREADSHEET_QUERY = graphql`
   query eventsQuery {
@@ -106,7 +108,7 @@ const SPREADSHEET_QUERY = graphql`
       }
     }
   }
-`
+`;
 ```
 
 The important part here it's that you have to use the **same** names on the left part of the query.
@@ -114,7 +116,7 @@ The important part here it's that you have to use the **same** names on the left
 The name of the variables of your spreadsheet is the name of the columns, which are a short version of the question (removing caps, spaces, and symbols). So in the case that your first question is "Name of the event", the resulting query will be:
 
 ```javascript
-import { graphql } from 'gatsby'
+import { graphql } from 'gatsby';
 
 const SPREADSHEET_QUERY = graphql`
   query eventsQuery {
@@ -130,7 +132,7 @@ const SPREADSHEET_QUERY = graphql`
       }
     }
   }
-`
+`;
 ```
 
 One more thing if you've never worked with Gatsby before, it provides a [Graphql playground](http://localhost:8000/___graphql) where you can try your queries without the overhead of recompiling the project. I highly recommend using it to generate your own query for the events.
@@ -144,7 +146,6 @@ Inside the root folder, there is a file called `appConfig.js`, which allow you t
   "title": "Gatsby Starter Event Calendar",
   "subTitle": "The easiest option to share events!",
   "formLink": "https://goo.gl/forms/u00WBxeK1kQco0uQ2",
-  "maxAmountEvents": 2,
   "limitMonthInTheFuture": 2,
   "theme": {}
 }
