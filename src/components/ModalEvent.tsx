@@ -58,11 +58,16 @@ const Header = ({ onClick, children }: HeaderProps) => (
 );
 
 const EventDescription = ({ event }: { event: EventInfo }) => (
-  <Box direction="row" fill="horizontal" background="calendar-modal-background">
+  <Box
+    direction="row"
+    fill="horizontal"
+    background="calendar-modal-background"
+    justify="center"
+  >
     <Text a11yTitle="Event time" margin="small" color="calendar-modal-text">
       {format(new Date(event.date).setUTCMinutes(180), 'HH:mm')}
     </Text>
-    <Box margin="small" width="400px">
+    <Box margin="small" width="medium">
       <Text
         a11yTitle="Event name"
         weight="bold"

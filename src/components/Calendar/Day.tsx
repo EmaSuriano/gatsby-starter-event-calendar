@@ -12,7 +12,7 @@ type Props = ModalData & {
 
 const Day = ({ date, events, onClick }: Props) => {
   const size = useContext(ResponsiveContext);
-  const today = new Date();
+  const today = new Date('5/20/2020');
 
   const isToday = isSameDay(date, today);
   const hasPast = isBefore(date, today) && !isToday;

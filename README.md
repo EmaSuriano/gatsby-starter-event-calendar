@@ -11,8 +11,6 @@
 
 The target audiences are Event Organizers or Meetups 😄
 
-### [Article ✍️](https://emasuriano.com/blog/building-a-collaborative-calendar-with-google-and-gatsby)
-
 ### [Demo 🎉](https://gatsby-starter-event-calendar.netlify.com/)
 
 ## Why? 🤔
@@ -41,9 +39,11 @@ People can submit new events via Google Form, which are stored inside a Google S
 
 ## How to start ▶️
 
+I wrote an article about this project where I explained these steps in a better way with images and the reason behind every step. [Link to the Article](https://emasuriano.com/blog/building-a-collaborative-calendar-with-google-and-gatsby).
+
 If you never used Gatsby before, I highly recommend you to [set up your development environment](https://www.gatsbyjs.org/tutorial/part-zero/)!
 
-To copy and install this starter run this command:
+Use the Gatsby CLI to get the code of the starter:
 
 ```bash
 $ gatsby new event-calendar https://github.com/EmaSuriano/gatsby-starter-event-calendar
@@ -53,11 +53,11 @@ The main data source of this starter is a Google Spreadsheet linked with a Googl
 
 ![Form Structure](./media/formStructure.png)
 
-**The text you pick for all the questions can differ from mine, then inside the application, you can apply an alias inside the GraphQL Query**
+**The text you pick for all the questions can differ from mine, then I will explain how to adapt the starter for your questions**
 
-Once the form created, you need to generate a Spreadsheet from it. For that, move to the Responses Tab and click on the green Spreadsheet logo which says "View Responses in Sheets". This will create a Spreadsheet that will be automatically updated when someone makes a new entry inside the form. This will be the source of the application.
+Once the form is created, you need to generate a Spreadsheet from it. For that, move to the Responses Tab and click on the green Spreadsheet logo which says "View Responses in Sheets". This will create a Spreadsheet that will be automatically updated when someone makes a new entry inside the form. This will be the source of the application.
 
-Next, you need to have access from the application to read the Spreadsheet. You need to navigate to your Google API Dashboard and then go to Credentials which is on the left panel. There you click on "Create credentials" and add a new Service account key.
+Next, you need to have access from the application to read the Spreadsheet. You need to navigate to your [Google API Dashboard](https://console.developers.google.com/apis/dashboard) and then go to Credentials which is on the left panel. There you click on "Create credentials" and add a new Service account key.
 
 You'll be redirected to a new page to create the service account key, just make sure the option of "App Engine default service account" is selected and the key type marked as JSON. Click on the Create button and you will download a JSON file with your credentials, copy the value of `client_email` and share the spreadsheet with that mail, and that's it! This is how you enable to read the document from an external application 🎉
 
@@ -76,66 +76,44 @@ Then go to `gatsby-config.js` and look for the options of `gatsby-source-google-
 
 Now you are ready to start the project, fetching all the events inside the Spreadsheet and displaying Calendars with them!
 
-```
-> yarn
+```bash
 > yarn start
 ```
 
 ## Mapping your question with Query structure
 
-The way that Gatsby works to fetch data is by using Graphql StaticQuery. It receives a prop called `query` where you define which information we want from our Graphql layer and another prop `render` which is a function that receives the result of the query with all the data.
+Gatsby will retrieve all the information inside the Spreadsheet and hosted inside a GraphQL server that you can access from anywhere inside your project by using the concept of `StaticQuery`. They are called static because they are evaluated **only** during build time.
 
-In this case, you don't need the whole render to adapt the project to your questions, just by changing the `query` will be enough 😄
+Graphql queries have a concept called `alias` that allows renaming a variable the query, and this is exactly what you need to properly map all the questions. This is the example Query:
 
-Graphql queries have a concept called `alias` that allows renaming a variable the query, and this is exactly what you need to properly map all the questions.
-
-This an example of my `query`:
-
-```javascript
-import { graphql } from 'gatsby';
-
-const SPREADSHEET_QUERY = graphql`
-  query eventsQuery {
-    allGoogleSheetEventsRow {
-      edges {
-        node {
-          id
-          eventName: whatisthename
-          date: when
-          eventLink: linktotheevent
-          place: where
-        }
+```graphql
+query eventsQuery {
+  allGoogleSheetEventsRow {
+    edges {
+      node {
+        id
+        eventName: whatisthename
+        date: when
+        eventLink: linktotheevent
+        place: where
       }
     }
   }
-`;
+}
 ```
 
 The important part here it's that you have to use the **same** names on the left part of the query.
 
-The name of the variables of your spreadsheet is the name of the columns, which are a short version of the question (removing caps, spaces, and symbols). So in the case that your first question is "Name of the event", the resulting query will be:
+The name of the variables of your spreadsheet will be same as your columns, which are a short version of the question (removing caps, spaces, and symbols). If your questions was "Provide a name", then your variable inside the Query will be `provideaname`, and you need to map it as `eventName: whatisthename`.
 
-```javascript
-import { graphql } from 'gatsby';
+One more thing if you've never worked with Gatsby before, it provides a [Graphql playground](http://localhost:8000/___graphql) where you can try your queries without the overhead of recompiling the project.
 
-const SPREADSHEET_QUERY = graphql`
-  query eventsQuery {
-    allGoogleSheetEventsRow {
-      edges {
-        node {
-          id
-          eventName: whatisthename
-          date: when
-          eventLink: linktotheevent
-          place: where
-        }
-      }
-    }
-  }
-`;
-```
+## Responsiveness
 
-One more thing if you've never worked with Gatsby before, it provides a [Graphql playground](http://localhost:8000/___graphql) where you can try your queries without the overhead of recompiling the project. I highly recommend using it to generate your own query for the events.
+| Desktop                                          | Tablet                                         | Mobile                                         |
+| ------------------------------------------------ | ---------------------------------------------- | ---------------------------------------------- |
+| ![desktop](./media/responsive-desktop.png)       | ![tablet](./media/responsive-tablet.png)       | ![mobile](./media/responsive-mobile.png)       |
+| ![desktop](./media/responsive-desktop-modal.png) | ![tablet](./media/responsive-tablet-modal.png) | ![mobile](./media/responsive-mobile-modal.png) |
 
 ## App Configuration
 
@@ -153,7 +131,7 @@ Inside the root folder, there is a file called `appConfig.js`, which allows you 
 
 All these values can be changed by the developer and in case one of them it's not defined they all have default values. Inside the application, these values are being accessed using the component called `ConfigContext` which is a basic implementation of `React Context`.
 
-### Theming 🎨
+## Theming 🎨
 
 `Grommet` has a prop called theme when the developer can set all the colors that are going to be used inside the application. Therefore there are some `standard` colors, like `background` and `text`, but there is a whole object just to configure how the Calendar is going to look like.
 
@@ -166,6 +144,7 @@ You can change any of the existing themes or create your own following this stru
   "secondary": "#41a7b3",
   "focus": "#1fe5bd",
   "text": "white",
+  "border": "white",
 
   "calendar": {
     "today": {
@@ -188,7 +167,7 @@ You can change any of the existing themes or create your own following this stru
       "border": "white"
     },
     "weekdays": {
-      "background": "#ffffff33",
+      "background": "#ffffff22",
       "border": "white"
     },
     "event": {
@@ -196,7 +175,7 @@ You can change any of the existing themes or create your own following this stru
       "text": "white"
     },
     "past-event": {
-      "background": "grey",
+      "background": "#666",
       "text": "white"
     },
     "modal": {
@@ -208,23 +187,11 @@ You can change any of the existing themes or create your own following this stru
 }
 ```
 
-Inside the folder [themes](./themes) you can find a few examples I made to show how versatile is the theming in this application. Here are some screenshots:
+Inside the folder [themes](./themes) you can find a few examples I made to show how colorful your calendar can be!
 
-#### Main (Used in Demo page)
-
-![Main Screenshot](./media/main-screenshot.png)
-
-#### Base
-
-![Base Screenshot](./media/base-screenshot.png)
-
-### Dark
-
-![Dark Screenshot](./media/dark-screenshot.png)
-
-### Transparent
-
-![Transparent Screenshot](./media/transparent-screenshot.png)
+| Main                              | Light                               | Dark                              |
+| --------------------------------- | ----------------------------------- | --------------------------------- |
+| ![main](./media/theming-main.png) | ![light](./media/theming-light.png) | ![dark](./media/theming-dark.png) |
 
 ## Building your site 📦
 
@@ -240,11 +207,11 @@ The result will be stored inside the `public` folder so you can upload to your w
 
 ## Automatic deployment on new Event ⚡️
 
-As Gatsby is a static website generator we need to make a new deploy to get the new data from the Spreadsheet. This can be seen as a drawback, but it's of the key why Gatsby is so fast.
+As Gatsby produce static websites you need to make a new deploy of the website in order to show the new events from the Events Spreadsheet.
 
 When it comes to deployment there are many alternatives, like Github Pages, Netlify, Heroku and many many more. Independently of which one you choose, none of them has the ability to _watch_ for changes inside our Spreadsheet, and they shouldn't because it's not their job.
 
-To attack this problem I use an application called [Zapier](https://zapier.com/). The idea behind is creating flows of action, defining a Trigger (something that needs to happen) and some actions (what should happen after).
+To address this problem I used [Zapier](https://zapier.com/), which allows to define flows of action inside your application. Defining a Trigger (something that needs to happen) and actions (what should happen after).
 
 For this project, the rule is: If someone adds/edits/removes a new event, trigger a new deploy. And this it looks in Zapier 😄
 
