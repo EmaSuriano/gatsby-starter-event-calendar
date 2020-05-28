@@ -14,26 +14,24 @@ const buildCredentials = ({ PROJECT_ID, PRIVATE_KEY, PRIVATE_KEY_ID }) => ({
   client_x509_cert_url: `https://www.googleapis.com/robot/v1/metadata/x509/${PROJECT_ID}%40appspot.gserviceaccount.com`,
 });
 
-const { theme, ...restConfig } = appConfig;
-const { DETERMINISTIC } = process.env;
-
-const DETERMINISTIC_SPREADSHEET_ID =
-  '1n9NllPge5CdbcqErum5Pkg5ZpplZkI7j-4BAO4oNNkI';
 const SPREADSHEET_ID = '1e6mNWZZLuBBFk2c-zGRSSh8g5mqoQUPbW78NmA_EI88';
 
-const spreadsheetId = DETERMINISTIC
-  ? DETERMINISTIC_SPREADSHEET_ID
-  : SPREADSHEET_ID;
+const { theme, ...siteMetadata } = appConfig;
 
 module.exports = {
-  siteMetadata: {
-    ...restConfig,
-    deterministicDate: DETERMINISTIC && '01/15/2020',
-  },
+  siteMetadata,
   plugins: [
     `gatsby-plugin-typescript`,
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
+    {
+      resolve: 'gatsby-source-google-sheets',
+      options: {
+        spreadsheetId: SPREADSHEET_ID,
+        worksheetTitle: 'Events',
+        credentials: buildCredentials(process.env),
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -55,14 +53,7 @@ module.exports = {
         icon: 'media/icon.svg',
       },
     },
-    {
-      resolve: 'gatsby-source-google-sheets',
-      options: {
-        spreadsheetId,
-        worksheetTitle: 'Events',
-        credentials: buildCredentials(process.env),
-      },
-    },
+
     'gatsby-plugin-offline',
   ],
 };

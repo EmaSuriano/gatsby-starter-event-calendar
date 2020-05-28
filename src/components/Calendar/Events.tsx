@@ -16,13 +16,12 @@ const Events = ({ events, hasPast }: Props) => {
     <Box
       gap={isPhone ? 'small' : 'xsmall'}
       pad="none"
-      as="ul"
       direction="column"
       fill="horizontal"
       margin="none"
     >
       {events.slice(0, isPhone ? 99 : MAX_AMOUNT_EVENTS).map((event) => (
-        <Box as="li" key={event.id}>
+        <Box key={event.id}>
           <Box
             round="xsmall"
             background={
