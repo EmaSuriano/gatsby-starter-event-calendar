@@ -16,6 +16,7 @@ const SPREADSHEET_QUERY = graphql`
     site {
       siteMetadata {
         limitMonthInTheFuture
+        deterministicDate
       }
     }
     allGoogleSheetEventsRow {
@@ -35,11 +36,14 @@ const CalendarPage = () => {
   const [modalData, setModalData] = useState<ModalData>();
 
   const { allGoogleSheetEventsRow, site } = useStaticQuery(SPREADSHEET_QUERY);
+  const { limitMonthInTheFuture, deterministicDate } = site.siteMetadata;
+
   const months = useMemo(
     () =>
       groupEventsByMonth(
         allGoogleSheetEventsRow.nodes,
-        site.siteMetadata.limitMonthInTheFuture,
+        limitMonthInTheFuture,
+        deterministicDate,
       ),
     [allGoogleSheetEventsRow.nodes, site.siteMetadata.limitMonthInTheFuture],
   );
@@ -58,6 +62,7 @@ const CalendarPage = () => {
           <Month
             key={format(month.startDate, 'MM')}
             openModal={openModal}
+            deterministicDate={deterministicDate}
             {...month}
           />
         ))}

@@ -10,11 +10,12 @@ import { Hide, Show } from '../Query';
 
 type Props = ModalData & {
   onClick?: () => void;
+  deterministicDate?: string;
 };
 
-const Day = ({ date, events, onClick }: Props) => {
+const Day = ({ date, events, onClick, deterministicDate }: Props) => {
   const size = useContext(ResponsiveContext);
-  const today = new Date();
+  const today = deterministicDate ? new Date(deterministicDate) : new Date();
 
   const isToday = isSameDay(date, today);
   const hasPast = isBefore(date, today) && !isToday;

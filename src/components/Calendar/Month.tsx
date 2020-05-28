@@ -10,9 +10,10 @@ import buildDaysWithEvents from '../../utils/buildDaysWithEvents';
 
 type Props = MonthInfo & {
   openModal: (modalData: ModalData) => void;
+  deterministicDate?: string;
 };
 
-const Month = ({ events, startDate, openModal }: Props) => {
+const Month = ({ events, startDate, openModal, deterministicDate }: Props) => {
   const dayNumber = getISODay(startDate);
   const days = getDaysInMonth(startDate);
   const emptyDays = 7 - ((dayNumber + days) % 7);
@@ -42,6 +43,7 @@ const Month = ({ events, startDate, openModal }: Props) => {
               <Day
                 key={format(modalData.date, 'DD')}
                 onClick={onClick}
+                deterministicDate={deterministicDate}
                 {...modalData}
               />
             );

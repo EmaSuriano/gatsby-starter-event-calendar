@@ -52,7 +52,8 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby clean && gatsby develop",
-    "start": "npm run develop",
+    "start": "yarn develop",
+    "start:deterministic": "DETERMINISTIC=true yarn develop",
     "lint": "eslint --ext .ts,.tsx src"
   },
   "repository": {
