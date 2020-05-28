@@ -47,7 +47,7 @@ const CalendarPage = () => {
     setModalData(data);
     setShowModal(true);
   }, []);
-  console.log(months);
+
   return (
     <Layout>
       <Hero />
