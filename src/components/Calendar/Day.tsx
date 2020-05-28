@@ -1,7 +1,5 @@
-import isBefore from 'date-fns/is_before';
-import isSameDay from 'date-fns/is_same_day';
-import format from 'date-fns/format';
 import React, { useContext } from 'react';
+import { isBefore, isSameDay, format } from 'date-fns';
 import { Text, Box, ResponsiveContext } from 'grommet';
 import styled from 'styled-components';
 import Events from './Events';
