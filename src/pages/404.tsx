@@ -1,6 +1,6 @@
-import React from 'react'
-import { Box, Heading, Button, Text } from 'grommet'
-import Layout from '../components/PageLayout'
+import React from 'react';
+import { Box, Heading, Button, Text } from 'grommet';
+import Layout from '../components/Layout';
 
 const NotFoundPage = () => (
   <Layout>
@@ -13,21 +13,19 @@ const NotFoundPage = () => (
       pad="medium"
       animation="slideDown"
     >
-      <Heading size="xlarge" align="center" margin="small">
+      <Heading size="xlarge" margin="small">
         404
       </Heading>
-      <Heading align="center" size="small">
-        Oops, Sorry we can&#39;t find the page
-      </Heading>
+      <Heading size="small">Oops, Sorry we can&#39;t find the page</Heading>
 
       <Button
         primary
-        margin={{ top: 'large' }}
+        margin="large"
         href="/"
         label={<Text margin="small">Go back to HomePage</Text>}
       />
     </Box>
   </Layout>
-)
+);
 
-export default NotFoundPage
+export default NotFoundPage;
