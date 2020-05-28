@@ -21,9 +21,9 @@ const Month = ({ events, startDate, openModal }: Props) => {
 
   return (
     <Box margin="medium">
-      <Heading a11yTitle={`Month of ${format(startDate, 'MMMM YYYY')}`}>
+      <Heading a11yTitle={`Month of ${format(startDate, 'MMMM yyyy')}`}>
         <b>{`${format(startDate, 'MMMM')} `}</b>
-        {format(startDate, 'YYYY')}
+        {format(startDate, 'yyyy')}
       </Heading>
       <MonthContainer>
         <Hide size="small">
@@ -40,7 +40,7 @@ const Month = ({ events, startDate, openModal }: Props) => {
 
             return (
               <Day
-                key={format(modalData.date, 'DD')}
+                key={format(modalData.date, 'dd')}
                 onClick={onClick}
                 {...modalData}
               />

@@ -4,16 +4,20 @@ import {
   isBefore,
   isSameMonth,
   compareAsc,
+  parse,
 } from 'date-fns';
+import { parseEventDate } from './parseDate';
 
 const removeOldAndFutureEvents = (
   event: EventInfo,
   today: Date,
   monthDiff: number,
 ) => {
-  if (!isSameMonth(event.date, today) && isBefore(event.date, today))
+  const eventDate = parseEventDate(event.date);
+
+  if (!isSameMonth(eventDate, today) && isBefore(eventDate, today))
     return false;
-  if (differenceInMonths(event.date, today) >= monthDiff) return false;
+  if (differenceInMonths(eventDate, today) >= monthDiff) return false;
 
   return true;
 };
@@ -29,7 +33,8 @@ const groupEventsByMonth = (
       removeOldAndFutureEvents(event, today, monthsDifferenceThreshold),
     )
     .reduce((acc: { [key: string]: EventInfo[] }, event) => {
-      const monthYear = format(event.date, 'YYYY-MM');
+      const monthYear = format(parseEventDate(event.date), 'MM-yyyy');
+
       const events = acc[monthYear] || [];
       return {
         ...acc,
@@ -40,7 +45,7 @@ const groupEventsByMonth = (
   const result = Object.keys(eventsByMonthKey)
     .map((monthKey) => ({
       events: eventsByMonthKey[monthKey],
-      startDate: new Date(`${monthKey}-01`),
+      startDate: parse(`01-${monthKey}`, 'dd-MM-yyyy', 0),
     }))
     .sort((m1, m2) => compareAsc(m1.startDate, m2.startDate));
 

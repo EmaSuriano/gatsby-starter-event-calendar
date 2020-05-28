@@ -1,7 +1,7 @@
 import React, { ReactNode, Fragment } from 'react';
 import { Layer, Box, Text, Button } from 'grommet';
 import { FormClose } from 'grommet-icons';
-import format from 'date-fns/format';
+import { format } from 'date-fns';
 
 type Props = ModalData & {
   onClose: () => void;
@@ -9,7 +9,7 @@ type Props = ModalData & {
 
 const ModalEvent = ({ onClose, date, events }: Props) => (
   <Layer position="center" onClickOutside={onClose} onEsc={onClose} modal>
-    <Header onClick={onClose}>{format(new Date(date), 'dddd D, MMMM')}</Header>
+    <Header onClick={onClose}>{format(date, 'cccc d, MMMM')}</Header>
     <Box direction="column" align="center" tag="section" margin="small">
       {events.map((event, i, arr) => (
         <Fragment key={event.id}>

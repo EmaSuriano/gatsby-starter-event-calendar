@@ -1,4 +1,5 @@
 import { getDaysInMonth, isSameDay } from 'date-fns';
+import { parseEventDate } from './parseDate';
 
 const buildDaysWithEvents = (
   startDate: Date,
@@ -17,7 +18,9 @@ const buildDaysWithEvents = (
 
       return {
         date,
-        events: events.filter((event) => isSameDay(event.date, date)),
+        events: events.filter((event) =>
+          isSameDay(parseEventDate(event.date), date),
+        ),
       };
     });
 };

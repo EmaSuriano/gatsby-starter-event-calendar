@@ -12,7 +12,7 @@ type Props = ModalData & {
 
 const Day = ({ date, events, onClick }: Props) => {
   const size = useContext(ResponsiveContext);
-  const today = new Date('5/20/2020');
+  const today = new Date();
 
   const isToday = isSameDay(date, today);
   const hasPast = isBefore(date, today) && !isToday;
@@ -48,11 +48,11 @@ type DayProps = { date: Date; type: string };
 const RowDay = ({ date, type }: DayProps) => (
   <Box width="xsmall">
     <Text color={`calendar-${type}-text`} size="large" a11yTitle="Day number">
-      {format(date, 'DD')}
+      {format(date, 'dd')}
     </Text>
 
     <Text color={`calendar-${type}-text`} size="small" a11yTitle="Day">
-      {format(date, 'dddd')}
+      {format(date, 'cccc')}
     </Text>
   </Box>
 );
@@ -65,7 +65,7 @@ const CalendarDay = ({ date, type }: DayProps) => (
     a11yTitle="Day number"
     textAlign="end"
   >
-    {format(date, 'DD')}
+    {format(date, 'dd')}
   </DayText>
 );
 

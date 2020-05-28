@@ -53,7 +53,6 @@ module.exports = {
         icon: 'media/icon.svg',
       },
     },
-
-    'gatsby-plugin-offline',
+    // 'gatsby-plugin-offline',
   ],
 };
