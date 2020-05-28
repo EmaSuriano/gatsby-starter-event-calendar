@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { getDaysInMonth, getISODay, format } from 'date-fns';
 import { Heading, Box } from 'grommet';
 import Day from './Day';

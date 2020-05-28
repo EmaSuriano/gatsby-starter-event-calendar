@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { Box } from 'grommet';
-import { StaticQuery, graphql, useStaticQuery } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import GithubCorner from '../components/GithubCorner';
 import Footer from '../components/Footer';
 import ModalEvent from '../components/ModalEvent';

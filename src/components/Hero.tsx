@@ -74,7 +74,7 @@ const Hero = () => {
   );
 };
 
-const Separator = ({ spacing = 'small' }) => (
+const Separator = ({ spacing = 'small' }: { spacing?: string }) => (
   <Box margin={{ vertical: spacing }} />
 );
 

@@ -2,6 +2,29 @@ import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { Helmet as ReactHelmet } from 'react-helmet';
 
+const BASE_TAGS = [
+  { charset: 'utf-8' },
+  {
+    'http-equiv': 'X-UA-Compatible',
+    content: 'IE=edge',
+  },
+  {
+    name: 'viewport',
+    content: 'width=device-width, initial-scale=1',
+  },
+];
+
+const HELMET_QUERY = graphql`
+  query SiteTitleQuery {
+    site {
+      siteMetadata {
+        title
+        subTitle
+      }
+    }
+  }
+`;
+
 const Helmet = () => {
   const data = useStaticQuery(HELMET_QUERY);
   const { title, subtitle } = data.site.siteMetadata;
@@ -35,28 +58,5 @@ const Helmet = () => {
     </ReactHelmet>
   );
 };
-
-const BASE_TAGS = [
-  { charset: 'utf-8' },
-  {
-    'http-equiv': 'X-UA-Compatible',
-    content: 'IE=edge',
-  },
-  {
-    name: 'viewport',
-    content: 'width=device-width, initial-scale=1',
-  },
-];
-
-const HELMET_QUERY = graphql`
-  query SiteTitleQuery {
-    site {
-      siteMetadata {
-        title
-        subTitle
-      }
-    }
-  }
-`;
 
 export default Helmet;
