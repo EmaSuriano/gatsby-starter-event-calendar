@@ -4,6 +4,7 @@
   "secondary": "#41a7b3",
   "focus": "#1fe5bd",
   "text": "white",
+  "border": "white",
 
   "calendar": {
     "today": {
@@ -26,7 +27,7 @@
       "border": "white"
     },
     "weekdays": {
-      "background": "#ffffff33",
+      "background": "#ffffff22",
       "border": "white"
     },
     "event": {
@@ -34,7 +35,7 @@
       "text": "white"
     },
     "past-event": {
-      "background": "grey",
+      "background": "#666",
       "text": "white"
     },
     "modal": {

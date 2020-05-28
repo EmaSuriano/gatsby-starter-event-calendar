@@ -1,34 +1,34 @@
 {
-  "background": "black",
-  "brand": "blueviolet",
-  "secondary": "violet",
-  "focus": "blueviolet",
-  "text": "white",
+  "background": "#00005c",
+  "brand": "#6a097d",
+  "secondary": "#c060a1",
+  "focus": "#c060a1",
+  "text": "#ffdcb4",
+  "border": "#ffdcb4",
 
   "calendar": {
     "today": {
-      "background": "violet",
-      "text": "blueviolet",
-      "border": "white"
+      "background": "#c060a1",
+      "text": "#ffdcb4",
+      "border": "#ffdcb4"
     },
     "day": {
-      "background": "black",
-      "text": "white",
-      "border": "white"
+      "background": "#6a097d",
+      "text": "#ffdcb4",
+      "border": "#ffdcb4"
     },
     "past": {
-      "background": "grey",
-      "text": "white",
-      "border": "white"
+      "background": "#33334b",
+      "text": "#ffdcb4",
+      "border": "#ffdcb4"
     },
     "empty": {
-      "background": "blueviolet",
-      "border": "white"
+      "border": "#ffdcb4"
     },
     "weekdays": {
-      "background": "black",
-      "text": "white",
-      "border": "white"
+      "background": "#6a097d",
+      "text": "#ffdcb4",
+      "border": "#ffdcb4"
     },
     "event": {
       "background": "white",
@@ -36,7 +36,7 @@
     },
     "past-event": {
       "background": "grey",
-      "text": "white"
+      "text": "#ffdcb4"
     },
     "modal": {
       "text": "black",

@@ -1,7 +1,5 @@
-import isBefore from 'date-fns/is_before';
-import isSameDay from 'date-fns/is_same_day';
-import format from 'date-fns/format';
 import React, { useContext } from 'react';
+import { isBefore, isSameDay, format } from 'date-fns';
 import { Text, Box, ResponsiveContext } from 'grommet';
 import styled from 'styled-components';
 import Events from './Events';
@@ -50,11 +48,11 @@ type DayProps = { date: Date; type: string };
 const RowDay = ({ date, type }: DayProps) => (
   <Box width="xsmall">
     <Text color={`calendar-${type}-text`} size="large" a11yTitle="Day number">
-      {format(date, 'DD')}
+      {format(date, 'dd')}
     </Text>
 
     <Text color={`calendar-${type}-text`} size="small" a11yTitle="Day">
-      {format(date, 'dddd')}
+      {format(date, 'cccc')}
     </Text>
   </Box>
 );
@@ -67,7 +65,7 @@ const CalendarDay = ({ date, type }: DayProps) => (
     a11yTitle="Day number"
     textAlign="end"
   >
-    {format(date, 'DD')}
+    {format(date, 'dd')}
   </DayText>
 );
 

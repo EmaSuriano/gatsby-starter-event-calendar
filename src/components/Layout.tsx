@@ -17,7 +17,11 @@ type Props = {
 };
 
 const Layout = ({ children }: Props) => (
-  <Grommet theme={customTheme} full>
+  <Grommet
+    theme={customTheme}
+    background={customTheme.global.colors.background}
+    full
+  >
     <GlobalStyle />
     <Helmet />
     {children}
