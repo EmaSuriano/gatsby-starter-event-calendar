@@ -25,7 +25,7 @@
     "gatsby-plugin-typescript": "^2.4.6",
     "gatsby-source-filesystem": "^2.3.10",
     "gatsby-source-google-sheets": "^1.1.1",
-    "gatsby-transformer-sharp": "^2.5.4",
+    "gatsby-transformer-sharp": "^2.5.5",
     "grommet": "^2.14.0",
     "grommet-icons": "^4.4.0",
     "react": "^16.13.1",
