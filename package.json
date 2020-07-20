@@ -23,7 +23,7 @@
     "gatsby-plugin-sharp": "^2.6.19",
     "gatsby-plugin-styled-components": "^3.3.10",
     "gatsby-plugin-typescript": "^2.4.15",
-    "gatsby-source-filesystem": "^2.3.19",
+    "gatsby-source-filesystem": "^2.3.20",
     "gatsby-source-google-sheets": "^1.1.1",
     "gatsby-transformer-sharp": "^2.5.11",
     "grommet": "^2.14.0",
