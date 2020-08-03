@@ -6277,10 +6277,10 @@ gatsby-plugin-react-svg@^3.0.0:
   dependencies:
     svg-react-loader "^0.4.4"
 
-gatsby-plugin-sharp@^2.6.22:
-  version "2.6.22"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-sharp/-/gatsby-plugin-sharp-2.6.22.tgz#4f35f03c87126bd35f7c5c92f7d7f7334e136542"
-  integrity sha512-yXIghEbpziqSZw+yqh+W2SpNTZpUkZX98+2YZNctc6CH9ToaMIGuYMwxf/90pStNjkwnlHcmnZ6o6Bk0jrjSFg==
+gatsby-plugin-sharp@^2.6.24:
+  version "2.6.24"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-sharp/-/gatsby-plugin-sharp-2.6.24.tgz#af93bcb155861413d3e003c631e67623e90c3406"
+  integrity sha512-tMcfnT4clBMv4Sok4sUvP7k+EIGKvQ9o8XGUT7QmKO/dybdXGhmH6N2jdSeL2Zt9xZliW5lxK5eLBTt5dH+VjQ==
   dependencies:
     "@babel/runtime" "^7.10.3"
     async "^2.6.3"
@@ -6293,7 +6293,7 @@ gatsby-plugin-sharp@^2.6.22:
     imagemin-pngquant "^6.0.1"
     lodash "^4.17.15"
     mini-svg-data-uri "^1.2.3"
-    potrace "^2.1.6"
+    potrace "^2.1.8"
     probe-image-size "^4.1.1"
     progress "^2.0.3"
     semver "^5.7.1"
