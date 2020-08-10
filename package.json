@@ -10,7 +10,7 @@
     "lint": "eslint --ext .ts,.tsx src"
   },
   "dependencies": {
-    "@types/react-helmet": "^6.0.0",
+    "@types/react-helmet": "^6.1.0",
     "babel-plugin-styled-components": "^1.11.1",
     "date-fns": "^2.15.0",
     "dotenv": "^8.0.0",
