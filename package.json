@@ -27,7 +27,7 @@
     "gatsby-source-google-sheets": "^1.1.1",
     "gatsby-transformer-sharp": "^2.5.15",
     "grommet": "^2.15.0",
-    "grommet-icons": "^4.4.0",
+    "grommet-icons": "^4.5.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-github-corner": "^2.5.0",
