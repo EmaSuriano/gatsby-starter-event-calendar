@@ -28,7 +28,7 @@
     "gatsby-transformer-sharp": "^2.5.18",
     "grommet": "^2.15.2",
     "grommet-icons": "^4.5.0",
-    "react": "^16.13.1",
+    "react": "^16.14.0",
     "react-dom": "^16.13.1",
     "react-github-corner": "^2.5.0",
     "react-helmet": "^6.1.0",
