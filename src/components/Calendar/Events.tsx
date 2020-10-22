@@ -33,6 +33,7 @@ const Events = ({ events, hasPast }: Props) => {
           >
             <Text
               size="small"
+              weight="bold"
               truncate
               color={
                 hasPast ? 'calendar-past-event-text' : 'calendar-event-text'
@@ -46,7 +47,7 @@ const Events = ({ events, hasPast }: Props) => {
       ))}
 
       {events.length > MAX_AMOUNT_EVENTS && (
-        <Text size="small" truncate>
+        <Text size="small" truncate weight="bold">
           {`And ${events.length - MAX_AMOUNT_EVENTS} more ...`}
         </Text>
       )}

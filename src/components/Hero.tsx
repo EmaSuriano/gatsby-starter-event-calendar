@@ -43,12 +43,21 @@ const Hero = () => {
 
       <Separator />
 
-      <Heading textAlign="center" size="large" a11yTitle="Application title">
+      <Heading
+        textAlign="center"
+        size="large"
+        a11yTitle="Application title"
+        color="text"
+      >
         {title}
       </Heading>
 
       {subTitle && (
-        <Heading textAlign="center" a11yTitle="Application sub title">
+        <Heading
+          textAlign="center"
+          a11yTitle="Application sub title"
+          color="text"
+        >
           {subTitle}
         </Heading>
       )}

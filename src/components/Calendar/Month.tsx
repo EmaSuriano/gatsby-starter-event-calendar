@@ -21,7 +21,10 @@ const Month = ({ events, startDate, openModal }: Props) => {
 
   return (
     <Box margin="medium">
-      <Heading a11yTitle={`Month of ${format(startDate, 'MMMM yyyy')}`}>
+      <Heading
+        a11yTitle={`Month of ${format(startDate, 'MMMM yyyy')}`}
+        color="text"
+      >
         <b>{`${format(startDate, 'MMMM')} `}</b>
         {format(startDate, 'yyyy')}
       </Heading>

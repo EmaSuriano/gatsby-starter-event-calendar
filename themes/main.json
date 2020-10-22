@@ -3,45 +3,46 @@
   "brand": "#1fe5bd",
   "secondary": "#41a7b3",
   "focus": "#1fe5bd",
-  "text": "white",
-  "border": "white",
+  "text": "#fff",
+  "border": "#fff",
 
   "calendar": {
     "today": {
-      "background": "#9af1daDD",
-      "text": "white",
-      "border": "white"
+      "background": "#9af1daCC",
+      "text": "#fff",
+      "border": "#fff"
     },
     "day": {
-      "background": "#ffffffbb",
-      "text": "black",
-      "border": "white"
+      "background": "#ffffffaa",
+      "text": "#333",
+      "border": "#fff"
     },
     "past": {
-      "background": "#ffffff73",
-      "text": "black",
-      "border": "white"
+      "background": "#ffffff66",
+      "text": "#333",
+      "border": "#fff"
     },
     "empty": {
       "background": "transparent",
-      "border": "white"
+      "border": "#fff"
     },
     "weekdays": {
       "background": "#ffffff22",
-      "border": "white"
+      "border": "#fff",
+      "text": "#fff"
     },
     "event": {
-      "background": "#1fe5bdDD",
-      "text": "white"
+      "background": "#1fe5bdCC",
+      "text": "#fff"
     },
     "past-event": {
       "background": "#666",
-      "text": "white"
+      "text": "#fff"
     },
     "modal": {
-      "text": "black",
+      "text": "#333",
       "separator": "#666",
-      "background": "white"
+      "background": "#fff"
     }
   }
 }

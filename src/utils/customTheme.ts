@@ -23,4 +23,6 @@ const customTheme = deepMerge(grommet, {
   },
 });
 
+console.log(customTheme);
+
 export default customTheme;
