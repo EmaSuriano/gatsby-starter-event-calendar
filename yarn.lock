@@ -7254,7 +7254,7 @@ graphql@^14.6.0, graphql@^14.7.0:
   dependencies:
     iterall "^1.2.2"
 
-grommet-icons@^4.2.0, grommet-icons@^4.5.0:
+grommet-icons@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/grommet-icons/-/grommet-icons-4.5.0.tgz#855ad26338ea1a1503eb18fdae428c431332be6a"
   integrity sha512-q7TNXV996fDh2e++7WapiNFUk0UEll17iEZ2d75W4yz+8Bb3+vdQ1MeT/d1RRlM0pV2KnTpSeR00GeN4KA9upg==
@@ -7266,12 +7266,12 @@ grommet-styles@^0.2.0:
   resolved "https://registry.yarnpkg.com/grommet-styles/-/grommet-styles-0.2.0.tgz#b2eac2b7e2747cb523434d21728ce5234f8ce4f4"
   integrity sha512-0OMSYuGeyifYKpg4Gv2HzL8rUdd0ddnJ5LbCBKgDuloC71XIwr9g/Fxa6rs737MbPV7OZ4pEm4wvrjH4epzf1A==
 
-grommet@^2.15.2:
-  version "2.15.2"
-  resolved "https://registry.yarnpkg.com/grommet/-/grommet-2.15.2.tgz#0aad0c3a14c8e1b468e1460de1bbdf8ecae09269"
-  integrity sha512-Rb9kOC5IkA3zc2E8DZG6Tv7iK0ls45dqcPTMn4BD6x+sTI+scyre2UjCYSpuOkLR4h38Bh4CdfWjQYohx82VJw==
+grommet@^2.16.0:
+  version "2.16.0"
+  resolved "https://registry.yarnpkg.com/grommet/-/grommet-2.16.0.tgz#96ac7ad34cfaae8e0757a5afe7cdf0653ee8f195"
+  integrity sha512-OcfjI5KfJQrN/JnUTzyVuBxmNV3i+WGDKcxLCFRWv7CYJCxZob74ezk+c0r1zkgribUafomVtC55pXQE147xfQ==
   dependencies:
-    grommet-icons "^4.2.0"
+    grommet-icons "^4.5.0"
     hoist-non-react-statics "^3.2.0"
     markdown-to-jsx "^6.11.4"
     polished "^3.4.1"
