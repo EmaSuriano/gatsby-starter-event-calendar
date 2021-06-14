@@ -1049,7 +1049,7 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.10.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.3.4", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.10.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.3.4", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4":
   version "7.12.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.5.tgz#410e7e487441e1b360c29be715d870d9b985882e"
   integrity sha512-plcc+hbExy3McchJCEQG3knOsuh3HH+Prx1P6cLIkET/0dLuQDEnrT+s27Axgc9bqfsmNUNHfscgMUdBpC9xfg==
@@ -7254,7 +7254,7 @@ graphql@^14.6.0, graphql@^14.7.0:
   dependencies:
     iterall "^1.2.2"
 
-grommet-icons@^4.2.0, grommet-icons@^4.5.0:
+grommet-icons@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/grommet-icons/-/grommet-icons-4.5.0.tgz#855ad26338ea1a1503eb18fdae428c431332be6a"
   integrity sha512-q7TNXV996fDh2e++7WapiNFUk0UEll17iEZ2d75W4yz+8Bb3+vdQ1MeT/d1RRlM0pV2KnTpSeR00GeN4KA9upg==
@@ -7266,17 +7266,16 @@ grommet-styles@^0.2.0:
   resolved "https://registry.yarnpkg.com/grommet-styles/-/grommet-styles-0.2.0.tgz#b2eac2b7e2747cb523434d21728ce5234f8ce4f4"
   integrity sha512-0OMSYuGeyifYKpg4Gv2HzL8rUdd0ddnJ5LbCBKgDuloC71XIwr9g/Fxa6rs737MbPV7OZ4pEm4wvrjH4epzf1A==
 
-grommet@^2.15.2:
-  version "2.15.2"
-  resolved "https://registry.yarnpkg.com/grommet/-/grommet-2.15.2.tgz#0aad0c3a14c8e1b468e1460de1bbdf8ecae09269"
-  integrity sha512-Rb9kOC5IkA3zc2E8DZG6Tv7iK0ls45dqcPTMn4BD6x+sTI+scyre2UjCYSpuOkLR4h38Bh4CdfWjQYohx82VJw==
+grommet@^2.17.3:
+  version "2.17.3"
+  resolved "https://registry.yarnpkg.com/grommet/-/grommet-2.17.3.tgz#7522a58db86ed54dc31e37cae9e492b8d4d049fb"
+  integrity sha512-33q28/bBTkhC68pL7LOyJmR8XF/izChGxYOMW+2SS5SojqGpR4yvhMTLFdEA0F20+tAZ9AqIvMGJmsyMbyDVXg==
   dependencies:
-    grommet-icons "^4.2.0"
+    grommet-icons "^4.5.0"
     hoist-non-react-statics "^3.2.0"
     markdown-to-jsx "^6.11.4"
-    polished "^3.4.1"
     prop-types "^15.7.2"
-    react-desc "^4.1.2"
+    react-desc "^4.1.3"
 
 gtoken@^1.1.0:
   version "1.2.3"
@@ -10747,13 +10746,6 @@ pnp-webpack-plugin@^1.6.4:
   dependencies:
     ts-pnp "^1.1.6"
 
-polished@^3.4.1:
-  version "3.6.3"
-  resolved "https://registry.yarnpkg.com/polished/-/polished-3.6.3.tgz#68f4fe7ffad46530733029b939dd12978200cb59"
-  integrity sha512-QJ0q0b6gX1+0OJtPMfgVJxV0vg5XTa4im+Rca989dAtmsd/fEky3X+0A+V+OUXq1nyiDGplJwqD853dTS0gkPg==
-  dependencies:
-    "@babel/runtime" "^7.9.2"
-
 portfinder@^1.0.26:
   version "1.0.26"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.26.tgz#475658d56ca30bed72ac7f1378ed350bd1b64e70"
@@ -11494,10 +11486,10 @@ rc@^1.2.7, rc@^1.2.8:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-desc@^4.1.2:
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/react-desc/-/react-desc-4.1.2.tgz#83fc4ede66b2d45ae4ef63c18421474d55972966"
-  integrity sha512-JAVe89uaLr0HZ0IKodnpTPNgNyJ/SPDQnl3VJPVwI+SpebmHvJiBNZEOwX201QmSbsVGqRY8ql/VFPlAx85WzA==
+react-desc@^4.1.3:
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/react-desc/-/react-desc-4.1.3.tgz#197b56b7b55aba702e0c912f372dea5fee86f53b"
+  integrity sha512-XqfNsg+nvAO77ja5+v3J6bMS7drnWozpiA64bUTyhqvSCJRkq45FiONl7/+74OjPw4Id6qbqVX6xkER/yTU8+w==
 
 react-dev-utils@^4.2.3:
   version "4.2.3"
