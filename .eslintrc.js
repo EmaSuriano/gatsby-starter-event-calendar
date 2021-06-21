@@ -3,8 +3,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
-    'prettier/@typescript-eslint',
-    'plugin:prettier/recommended',
+    'prettier',
   ],
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
@@ -21,4 +20,4 @@ module.exports = {
     browser: true,
     node: true,
   },
-}
+};
