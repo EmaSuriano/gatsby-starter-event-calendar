@@ -6,21 +6,11 @@ on:
       - master
 
 jobs:
-  build:
+  check-types:
     runs-on: ubuntu-latest
-    if:
-      (github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]') ||
-      (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]')
-    steps:
-      - name: Checkout
-        if: ${{ github.event_name != 'pull_request_target' }}
-        uses: actions/checkout@v2
 
-      - name: Checkout PR
-        if: ${{ github.event_name == 'pull_request_target' }}
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
+    steps:
+      - uses: actions/checkout@v2
 
       - name: Read .nvmrc
         id: node_version
@@ -33,8 +23,23 @@ jobs:
 
       - run: yarn install --frozen-lockfile
 
-      - run: yarn build
-        env:
-          PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
-          PRIVATE_KEY_ID: ${{secrets.PRIVATE_KEY_ID}}
-          PROJECT_ID: ${{secrets.PROJECT_ID}}
+      - run: yarn ts-check
+
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Read .nvmrc
+        id: node_version
+        run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
+
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ steps.node_version.outputs.NODE_VERSION }}
+
+      - run: yarn install --frozen-lockfile
+
+      - run: yarn lint
