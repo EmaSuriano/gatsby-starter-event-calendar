@@ -4,13 +4,26 @@ on:
   pull_request:
     branches:
       - master
+  pull_request_target:
+    branches:
+      - master
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    if:
+      (github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]') ||
+      (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]')
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        if: ${{ github.event_name != 'pull_request_target' }}
+        uses: actions/checkout@v2
+
+      - name: Checkout PR
+        if: ${{ github.event_name == 'pull_request_target' }}
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Read .nvmrc
         id: node_version
