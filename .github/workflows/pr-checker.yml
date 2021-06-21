@@ -46,9 +46,9 @@ jobs:
 
       - run: yarn install --frozen-lockfile
 
-      - run: yarn check-types
-    
-  check-types:
+      - run: yarn ts-check
+
+  lint:
     runs-on: ubuntu-latest
 
     steps:
