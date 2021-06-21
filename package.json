@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "babel-plugin-styled-components": "^1.12.0",
+    "babel-runtime": "^6.26.0",
     "date-fns": "^2.22.1",
     "dotenv": "^8.0.0",
     "gatsby": "^2.27.0",
