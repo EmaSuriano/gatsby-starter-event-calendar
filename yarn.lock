@@ -1935,13 +1935,6 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-native@*":
-  version "0.62.12"
-  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.62.12.tgz#24407983b527749f37b512cd5d2bdc6133810b17"
-  integrity sha512-EuM2QOx0LGwY3mKQ313+QcTYOwJhw5eggmE42GO4ElIKIfNK+zxxM6Pe9dT1Eq8eCJXY0oG327L7gUBWniwNNA==
-  dependencies:
-    "@types/react" "*"
-
 "@types/react@*":
   version "16.9.35"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.35.tgz#a0830d172e8aadd9bd41709ba2281a3124bbd368"
@@ -1973,14 +1966,13 @@
     "@types/glob" "*"
     "@types/node" "*"
 
-"@types/styled-components@^5.1.4":
-  version "5.1.4"
-  resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-5.1.4.tgz#11f167dbde268635c66adc89b5a5db2e69d75384"
-  integrity sha512-78f5Zuy0v/LTQNOYfpH+CINHpchzMMmAt9amY2YNtSgsk1TmlKm8L2Wijss/mtTrsUAVTm2CdGB8VOM65vA8xg==
+"@types/styled-components@^5.1.10":
+  version "5.1.10"
+  resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-5.1.10.tgz#b509da9d62be8a02cefd88ec6b820f417429a503"
+  integrity sha512-g3ZfWlTiyXktASIhcfCicZtqB/fFFnq0a7kPYYxKXNggdrohp8m/9bMmmt3zDvHj2gplWDGCkZByfFnEXfbSWg==
   dependencies:
     "@types/hoist-non-react-statics" "*"
     "@types/react" "*"
-    "@types/react-native" "*"
     csstype "^3.0.2"
 
 "@types/tmp@^0.0.33":
