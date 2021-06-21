@@ -1,18 +1,25 @@
+const assert = require('assert');
 const appConfig = require('./appConfig');
+
 require('dotenv').config();
 
-const buildCredentials = ({ PROJECT_ID, PRIVATE_KEY, PRIVATE_KEY_ID }) => ({
-  type: 'service_account',
-  project_id: PROJECT_ID,
-  private_key_id: PRIVATE_KEY_ID,
-  private_key: PRIVATE_KEY.replace(/(\\r)|(\\n)/g, '\n'),
-  client_email: `${PROJECT_ID}@appspot.gserviceaccount.com`,
-  client_id: '',
-  auth_uri: 'https://accounts.google.com/o/oauth2/auth',
-  token_uri: 'https://oauth2.googleapis.com/token',
-  auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
-  client_x509_cert_url: `https://www.googleapis.com/robot/v1/metadata/x509/${PROJECT_ID}%40appspot.gserviceaccount.com`,
-});
+const buildCredentials = ({ PROJECT_ID, PRIVATE_KEY, PRIVATE_KEY_ID }) => {
+  assert(PROJECT_ID, 'PROJECT_ID not specified');
+  assert(PRIVATE_KEY, 'PRIVATE_KEY not specified');
+  assert(PRIVATE_KEY_ID, 'PRIVATE_KEY_ID not specified');
+  return {
+    type: 'service_account',
+    project_id: PROJECT_ID,
+    private_key_id: PRIVATE_KEY_ID,
+    private_key: PRIVATE_KEY.replace(/(\\r)|(\\n)/g, '\n'),
+    client_email: `${PROJECT_ID}@appspot.gserviceaccount.com`,
+    client_id: '',
+    auth_uri: 'https://accounts.google.com/o/oauth2/auth',
+    token_uri: 'https://oauth2.googleapis.com/token',
+    auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
+    client_x509_cert_url: `https://www.googleapis.com/robot/v1/metadata/x509/${PROJECT_ID}%40appspot.gserviceaccount.com`,
+  };
+};
 
 const SPREADSHEET_ID = '1e6mNWZZLuBBFk2c-zGRSSh8g5mqoQUPbW78NmA_EI88';
 
@@ -53,6 +60,5 @@ module.exports = {
         icon: 'media/icon.svg',
       },
     },
-    // 'gatsby-plugin-offline',
   ],
 };

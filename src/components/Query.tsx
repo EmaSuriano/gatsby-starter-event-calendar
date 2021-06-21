@@ -7,18 +7,18 @@ type Size = typeof SIZES[number];
 
 type MediaProps = {
   sizes: Size[];
-  children: any;
+  children: React.ReactElement;
 };
 
 type Props = {
   size: Size;
-  children: any;
+  children: React.ReactElement;
 };
 
 const Media = ({ sizes, children }: MediaProps) => {
   const currentSize = useContext(ResponsiveContext) as Size;
 
-  return sizes.includes(currentSize) && children;
+  return sizes.includes(currentSize) ? children : null;
 };
 
 export const Hide = ({ size, ...rest }: Props) => (

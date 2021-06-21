@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Box } from 'grommet';
 import { graphql, useStaticQuery } from 'gatsby';
 import GithubCorner from '../components/GithubCorner';
@@ -31,7 +31,6 @@ const SPREADSHEET_QUERY = graphql`
 `;
 
 const CalendarPage = () => {
-  const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState<ModalData>();
 
   const { allGoogleSheetEventsRow, site } = useStaticQuery(SPREADSHEET_QUERY);
@@ -43,11 +42,6 @@ const CalendarPage = () => {
     [allGoogleSheetEventsRow.nodes, limitMonthInTheFuture],
   );
 
-  const openModal = useCallback((data: ModalData) => {
-    setModalData(data);
-    setShowModal(true);
-  }, []);
-
   return (
     <Layout>
       <Hero />
@@ -56,13 +50,13 @@ const CalendarPage = () => {
         {months.map((month) => (
           <Month
             key={format(month.startDate, 'MM')}
-            openModal={openModal}
+            openModal={(data: ModalData) => setModalData(data)}
             {...month}
           />
         ))}
       </Box>
-      {showModal && (
-        <ModalEvent onClose={() => setShowModal(false)} {...modalData!} />
+      {modalData && (
+        <ModalEvent onClose={() => setModalData(undefined)} {...modalData} />
       )}
 
       <GithubCorner href="https://github.com/EmaSuriano/gatsby-starter-event-calendar" />
