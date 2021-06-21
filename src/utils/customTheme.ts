@@ -1,5 +1,6 @@
 import { grommet } from 'grommet/themes';
 import { deepMerge } from 'grommet/utils';
+// @ts-expect-error
 import { theme } from '../../appConfig';
 
 type CustomTheme = { [key: string]: string | CustomTheme };
@@ -22,7 +23,5 @@ const customTheme = deepMerge(grommet, {
     colors: flatTheme(theme),
   },
 });
-
-console.log(customTheme);
 
 export default customTheme;

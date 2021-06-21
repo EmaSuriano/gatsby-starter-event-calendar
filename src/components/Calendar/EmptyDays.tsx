@@ -9,16 +9,18 @@ type Props = {
 
 const EmptyDays = ({ amount = 0 }: Props) => (
   <Hide size="small">
-    {Array(amount)
-      .fill(null)
-      .map(() => (
-        <CalendarBox
-          background="calendar-empty-background"
-          border={{ color: 'calendar-empty-border' }}
-          key={v4()}
-          square
-        />
-      ))}
+    <>
+      {Array(amount)
+        .fill(null)
+        .map(() => (
+          <CalendarBox
+            background="calendar-empty-background"
+            border={{ color: 'calendar-empty-border' }}
+            key={v4()}
+            square
+          />
+        ))}
+    </>
   </Hide>
 );
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { Helmet as ReactHelmet } from 'react-helmet';
 
-const BASE_TAGS = [
+const BASE_TAGS: Record<string, string>[] = [
   { charset: 'utf-8' },
   {
     'http-equiv': 'X-UA-Compatible',
@@ -29,7 +29,7 @@ const Helmet = () => {
   const data = useStaticQuery(HELMET_QUERY);
   const { title, subtitle } = data.site.siteMetadata;
 
-  const metaTags = [
+  const metaTags: Record<string, string>[] = [
     { itemprop: 'name', content: title },
     { itemprop: 'description', content: subtitle },
     { name: 'description', content: subtitle },
