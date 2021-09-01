@@ -1,6 +1,6 @@
 import { grommet } from 'grommet/themes';
 import { deepMerge } from 'grommet/utils';
-// @ts-expect-error
+// @ts-expect-error js import
 import { theme } from '../../appConfig';
 
 type CustomTheme = { [key: string]: string | CustomTheme };
