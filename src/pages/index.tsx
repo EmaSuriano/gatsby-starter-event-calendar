@@ -18,13 +18,13 @@ const SPREADSHEET_QUERY = graphql`
         limitMonthInTheFuture
       }
     }
-    allGoogleSheetEventsRow {
+    allGoogleEventsSheet {
       nodes {
         id
-        eventName: whatisthename
-        date: when
-        eventLink: linktotheevent
-        place: where
+        eventName: whatIsTheName____
+        date: when____
+        eventLink: linkToTheEvent___
+        place: where____
       }
     }
   }
@@ -33,13 +33,12 @@ const SPREADSHEET_QUERY = graphql`
 const CalendarPage = () => {
   const [modalData, setModalData] = useState<ModalData>();
 
-  const { allGoogleSheetEventsRow, site } = useStaticQuery(SPREADSHEET_QUERY);
+  const { allGoogleEventsSheet, site } = useStaticQuery(SPREADSHEET_QUERY);
   const { limitMonthInTheFuture } = site.siteMetadata;
 
   const months = useMemo(
-    () =>
-      groupEventsByMonth(allGoogleSheetEventsRow.nodes, limitMonthInTheFuture),
-    [allGoogleSheetEventsRow.nodes, limitMonthInTheFuture],
+    () => groupEventsByMonth(allGoogleEventsSheet.nodes, limitMonthInTheFuture),
+    [allGoogleEventsSheet.nodes, limitMonthInTheFuture],
   );
 
   return (
