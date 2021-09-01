@@ -197,7 +197,7 @@ The result will be stored inside the `public` folder so you can upload to your w
 
 I came with the idea of creating this starter after making a page for a friend with the same concept but it was totally attached to only one spreadsheet and lots of hardcoded information.
 
-I'm totally for new PRs with bug fixes, change in Documentation, and new features to the starter 🙌
+I'm totally for new PRs with bug fixes, changes in Documentation, and new features to the starter 🙌
 
 ## License 📝
 
