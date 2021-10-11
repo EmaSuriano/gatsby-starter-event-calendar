@@ -13,7 +13,7 @@
   "dependencies": {
     "babel-plugin-styled-components": "^1.13.2",
     "babel-runtime": "^6.26.0",
-    "date-fns": "^2.24.0",
+    "date-fns": "^2.25.0",
     "dotenv": "^10.0.0",
     "gatsby": "^3.14.2",
     "gatsby-plugin-manifest": "^3.14.0",
