@@ -1,6 +1,6 @@
 # Gatsby Starter: Event Calendar 📅
 
-[![Build](https://github.com/EmaSuriano/gatsby-starter-event-calendar/actions/workflows/build.yml/badge.svg)](https://github.com/EmaSuriano/gatsby-starter-event-calendar/actions/workflows/build.yml)
+[![Build](https://github.com/EmaSuriano/gatsby-starter-event-calendar/actions/workflows/master.yml/badge.svg)](https://github.com/EmaSuriano/gatsby-starter-event-calendar/actions/workflows/master.yml)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/7c0d45fd-b587-4e8a-afc8-f8da150e0663/deploy-status)](https://app.netlify.com/sites/gatsby-starter-event-calendar/deploys)
 
 ## [Demo 🎉](https://gatsby-starter-event-calendar.netlify.com/)
