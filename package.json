@@ -34,7 +34,7 @@
     "uuid": "^8.3.1"
   },
   "devDependencies": {
-    "@types/react-helmet": "^6.1.4",
+    "@types/react-helmet": "^6.1.5",
     "@types/styled-components": "^5.1.18",
     "@types/uuid": "^8.3.3",
     "eslint-config-prettier": "^8.3.0",
