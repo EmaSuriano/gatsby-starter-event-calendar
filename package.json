@@ -37,7 +37,7 @@
     "@types/react-helmet": "^6.1.5",
     "@types/styled-components": "^5.1.22",
     "@types/uuid": "^8.3.4",
-    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.28.0",
     "prettier": "^2.5.1",
