@@ -1,45 +1,25 @@
 name: Pr Checker
 
-on:
-  pull_request:
-    branches:
-      - master
+on: [pull_request, pull_request_target]
 
 jobs:
-  check-types:
+  pr-checker:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Read .nvmrc
-        id: node_version
-        run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
-
-      - name: Setup node
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
         with:
-          node-version: ${{ steps.node_version.outputs.NODE_VERSION }}
+          node-version-file: '.nvmrc'
 
       - run: yarn install --frozen-lockfile
 
       - run: yarn ts-check
-
-  lint:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Read .nvmrc
-        id: node_version
-        run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
-
-      - name: Setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ steps.node_version.outputs.NODE_VERSION }}
-
-      - run: yarn install --frozen-lockfile
-
       - run: yarn lint
+      - run: yarn build
+        env:
+          PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
+          PRIVATE_KEY_ID: ${{secrets.PRIVATE_KEY_ID}}
+          PROJECT_ID: ${{secrets.PROJECT_ID}}
+          CLIENT_EMAIL: ${{secrets.CLIENT_EMAIL}}
