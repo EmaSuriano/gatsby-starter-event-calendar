@@ -5761,10 +5761,10 @@ gatsby-source-filesystem@^3.14.0:
     valid-url "^1.0.9"
     xstate "^4.14.0"
 
-gatsby-source-google-spreadsheets@^3.0.8:
-  version "3.0.8"
-  resolved "https://registry.yarnpkg.com/gatsby-source-google-spreadsheets/-/gatsby-source-google-spreadsheets-3.0.8.tgz#5cf1d96690ee84559a8ad9631bd0f02a8b32da7a"
-  integrity sha512-P6RKlLM3lm6BF3IGwfP94MiPT7NKK6T3oRmTACMeYjYxhdW9gf768CHDqknEQAqHZMR0Iz9QmfJfCiCLw0Jc7Q==
+gatsby-source-google-spreadsheets@^3.0.9:
+  version "3.0.9"
+  resolved "https://registry.yarnpkg.com/gatsby-source-google-spreadsheets/-/gatsby-source-google-spreadsheets-3.0.9.tgz#d26ec8e820b656128385972442da450c73c57d66"
+  integrity sha512-YawzmBxDZJZY+YJZFyQQtnDBudM+lURPQHF6diVMy0PBnkOlExqOAZNl+9W7cDUsn/2HZqCASmTkn5Z6LXKSOw==
   dependencies:
     google-spreadsheet "^3.1.15"
     uuid "^7.0.3"
