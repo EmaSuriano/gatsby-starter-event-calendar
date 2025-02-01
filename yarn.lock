@@ -6345,17 +6345,10 @@ graphql@^15.4.0:
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-15.5.2.tgz#efa19f8f2bf1a48eb7d5c85bf17e144ba8bb0480"
   integrity sha512-dZjLPWNQqYv0dqV2RNbiFed0LtSp6yd4jchsDGnuhDKa9OQHJYCfovaOEvY91w9gqbYO7Se9LKDTl3xxYva/3w==
 
-grommet-icons@^4.8.0:
-  version "4.8.0"
-  resolved "https://registry.yarnpkg.com/grommet-icons/-/grommet-icons-4.8.0.tgz#3c9922b3662d0b9e22913ecbaa7b1101031b554b"
-  integrity sha512-8cS1zVib88SIyLfsWFFazMzYz/8k5MvXZqopUjN/Bnl8HvQBUe0Z87F+JXRb1AMMYkuqXQW9Pg6XfBB3Ro9VdQ==
-  dependencies:
-    grommet-styles "^0.2.0"
-
-grommet-styles@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/grommet-styles/-/grommet-styles-0.2.0.tgz#b2eac2b7e2747cb523434d21728ce5234f8ce4f4"
-  integrity sha512-0OMSYuGeyifYKpg4Gv2HzL8rUdd0ddnJ5LbCBKgDuloC71XIwr9g/Fxa6rs737MbPV7OZ4pEm4wvrjH4epzf1A==
+grommet-icons@^4.12.3, grommet-icons@^4.8.0:
+  version "4.12.3"
+  resolved "https://registry.yarnpkg.com/grommet-icons/-/grommet-icons-4.12.3.tgz#75f3e1ef68f25dee8dbeaa433de70db4f624fd2a"
+  integrity sha512-4v4KG7OE66oOWnGgjZYrnNd9jORwgWpvRKCS0GqOEswqtlXcArEGgUrEgM/nVyvL/tKxac9MTXHzMnjy0/E9ZQ==
 
 grommet@^2.28.0:
   version "2.28.0"
